@@ -313,8 +313,8 @@ DWORD WINAPI IconWave(LPVOID lpstart) {
 			for (; xs < x; xs += 3) {
 				DrawIcon(hdc, xs, ys + wave * cos(i), LoadIconW(0, IDI_ERROR));
 				i += 0.05;
-				wave += 0.32;
-				Sleep(10);
+				wave += i + 0.32;
+				//Sleep(10); // too small value ngl
 			}
 		}
 		else if (sel == 2) {
@@ -324,8 +324,8 @@ DWORD WINAPI IconWave(LPVOID lpstart) {
 			for (; xs > 0; xs -= 3) {
 				DrawIcon(hdc, xs, ys + wave * cos(i), LoadIconW(0, IDI_WARNING));
 				i += 0.05;
-				wave += 0.32;
-				Sleep(10);
+				wave += i + 0.32;
+				//Sleep(10);
 			}
 		}
 		else if (sel == 3) {
@@ -335,8 +335,8 @@ DWORD WINAPI IconWave(LPVOID lpstart) {
 			for (; ys < y; ys += 3) {
 				DrawIcon(hdc, xs + wave * cos(i), ys, LoadIconW(0, IDI_INFORMATION));
 				i += 0.05;
-				wave += 0.32;
-				Sleep(10);
+				wave += i + 0.32;
+				//Sleep(10);
 			}
 		}
 		else if (sel == 4) {
@@ -346,8 +346,8 @@ DWORD WINAPI IconWave(LPVOID lpstart) {
 			for (; ys > 0; ys -= 3) {
 				DrawIcon(hdc, xs + wave * cos(i), ys, LoadIconW(0, IDI_QUESTION));
 				i += 0.05;
-				wave += 0.32;
-				Sleep(10);
+				wave += i + 0.32;
+				//Sleep(10);
 			}
 		}
 	}
@@ -383,14 +383,14 @@ DWORD WINAPI Shake(LPVOID lpstart) {
 
 		BitBlt(hdc, shit, shit, x, y, hdc, 0, 0, SRCCOPY);
 		Sleep(1000 / shit); // the bigger i is, the faster it will be
-		shit *= 1.1; // exponencial?
+		shit += 2.5;
 
 		// NEGATIVE (eu descrobri que em quase todas as lilnguagems se tu por)
 		// "-" antes de uma variavel ela vira negativa (ex i -> -i)
 
 		BitBlt(hdc, -shit, -shit, x, y, hdc, 0, 0, SRCCOPY);
 		Sleep(1000 / shit); // the bigger i is, the faster it will be
-		shit *= 1.1; // exponencial?
+		shit += 2.5;
 	}
 }
 

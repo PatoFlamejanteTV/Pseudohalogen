@@ -8,7 +8,7 @@
 #                               # (safety version)
 #################################
 
-If you don't know what is the Holzer.exe file do, then
+If you don't know what is the Pseudohalogen.exe file do, then
 do not run, and delete the file. This program is a malware.
 This will destroy your system.
 

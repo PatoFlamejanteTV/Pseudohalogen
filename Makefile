@@ -4,9 +4,9 @@ FLAGS = -g -c -Wall
 LFLAGS = 
 
 # Source files and object files
-OBJS = Holzer
-SOURCE = Holzer
-HEADER = Holzer
+OBJS = Pseudohalogen
+SOURCE = Pseudohalogen
+HEADER = Pseudohalogen
 OUT = PseudoHalogen
 
 # Libraries

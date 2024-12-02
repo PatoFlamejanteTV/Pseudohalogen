@@ -28,7 +28,7 @@
     <ClInclude Include="stuff.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\OneDrive\Asztali gép\Képek\icon.ico" />
+    <!-- bro really leaked his own PC name-->
     <Image Include="icon.ico" />
   </ItemGroup>
   <ItemGroup>

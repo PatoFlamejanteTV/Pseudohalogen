@@ -376,15 +376,21 @@ DWORD WINAPI Shake(LPVOID lpstart) {
 
 	HDC hdc = GetDC(0);
 
+	double shit = 0; // idfc about if i shoul use int or double
+
 	while (true) {
-		BitBlt(hdc, 10, 10, x, y, hdc, 0, 0, SRCCOPY);
-		Sleep(50);
-		BitBlt(hdc, -10, 10, x, y, hdc, 0, 0, SRCCOPY);
-		Sleep(50);
-		BitBlt(hdc, 10, -10, x, y, hdc, 0, 0, SRCCOPY);
-		Sleep(50);
-		BitBlt(hdc, -10, -10, x, y, hdc, 0, 0, SRCCOPY);
-		Sleep(50);
+		// POSTIVE (um número normal q n tem "-" já é positivo)
+
+		BitBlt(hdc, shit, shit, x, y, hdc, 0, 0, SRCCOPY);
+		Sleep(1000 / shit); // the bigger i is, the faster it will be
+		shit *= 1.1; // exponencial?
+
+		// NEGATIVE (eu descrobri que em quase todas as lilnguagems se tu por)
+		// "-" antes de uma variavel ela vira negativa (ex i -> -i)
+
+		BitBlt(hdc, -shit, -shit, x, y, hdc, 0, 0, SRCCOPY);
+		Sleep(1000 / shit); // the bigger i is, the faster it will be
+		shit *= 1.1; // exponencial?
 	}
 }
 

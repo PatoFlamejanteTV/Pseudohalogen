@@ -9,4 +9,4 @@
 
 static HWAVEOUT wave = 0;
 
-void startPayloads();
+void startPayloads(); // start lol

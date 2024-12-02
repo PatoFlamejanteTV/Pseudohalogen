@@ -198,6 +198,24 @@ void WINAPI BytebeatPato5() {
 	waveOutClose(wave);
 }
 
+void WINAPI BytebeatPato6() {
+	WAVEFORMATEX wavef = { WAVE_FORMAT_PCM, 1, 8000, 0, WAVE_FORMAT_PCM, 8, 0 };
+
+	waveOutOpen(&wave, 0, &wavef, 0, 0, 0);
+	char buffer[8000 * 60];
+
+	for (DWORD t = 0; t < sizeof(buffer); t++) {
+		buffer[t] = (((2*t>>11&t>>13)%11%9%7*t>>1&127)+(((t>>11)+2&3?0:1)*(-t>>4&127)*((t>>2^-(t&t>>2))*t&255)>>8)+(5000/(t%2048?t%2048:1)*(-t>>12&7?-t>>11&1:1)&128));
+	}
+
+	WAVEHDR header = { buffer, sizeof(buffer), 0, 0, 0, 0, 0, 0 };
+
+	waveOutPrepareHeader(wave, &header, sizeof(WAVEHDR));
+	waveOutWrite(wave, &header, sizeof(WAVEHDR));
+	waveOutUnprepareHeader(wave, &header, sizeof(WAVEHDR));
+	waveOutClose(wave);
+}
+
 //////////////////////////////////////////////////////////////////////////////
 
 DWORD WINAPI FakeError(LPVOID lpstart) {

@@ -1,5 +1,7 @@
 #include "stuff.h"
 
+#define PI   3.14159265358979323846264338327950288
+
 DWORD random() {
 	DWORD number = __rdtsc();
 	
@@ -58,7 +60,7 @@ void WINAPI BytebeatPato1() {
 	char buffer[8000 * 60];
 
 	for (DWORD t = 0; t < sizeof(buffer); t++) {
-		buffer[t] = (64*(t>>3|t>>4|t>>9)+(t>>11&t<<2)^2*(t>>16|t|t>>7)+32*(t>>t&32));
+		buffer[t] = ((t>>9&1+t>>12&7?0:9001/(t%4096)-t/9&8?-1:0)^t>>4&100*((t<<2|t>>5|t^63)&(t<<10|t>>11)));
 	}
 
 	WAVEHDR header = { buffer, sizeof(buffer), 0, 0, 0, 0, 0, 0 };
@@ -68,6 +70,43 @@ void WINAPI BytebeatPato1() {
 	waveOutUnprepareHeader(wave, &header, sizeof(WAVEHDR));
 	waveOutClose(wave);
 }
+
+void WINAPI BytebeatPato2() {
+	WAVEFORMATEX wavef = { WAVE_FORMAT_PCM, 1, 8000, 0, WAVE_FORMAT_PCM, 8, 0 };
+
+	waveOutOpen(&wave, 0, &wavef, 0, 0, 0);
+	char buffer[8000 * 60];
+
+	for (DWORD t = 0; t < sizeof(buffer); t++) {
+		buffer[t] = ((t>>9&1+t>>12&7?0:9001/(t%4096)-t/9&8?-1:0)^t>>4&t*(t>>5|t>>8)>>(t>>16));
+	}
+
+	WAVEHDR header = { buffer, sizeof(buffer), 0, 0, 0, 0, 0, 0 };
+
+	waveOutPrepareHeader(wave, &header, sizeof(WAVEHDR));
+	waveOutWrite(wave, &header, sizeof(WAVEHDR));
+	waveOutUnprepareHeader(wave, &header, sizeof(WAVEHDR));
+	waveOutClose(wave);
+}
+
+void WINAPI BytebeatPato3() {
+	WAVEFORMATEX wavef = { WAVE_FORMAT_PCM, 1, 8000, 0, WAVE_FORMAT_PCM, 8, 0 };
+
+	waveOutOpen(&wave, 0, &wavef, 0, 0, 0);
+	char buffer[8000 * 60];
+
+	for (DWORD t = 0; t < sizeof(buffer); t++) {
+		buffer[t] = (t*t*4/((5656>>(t>>12&14)&7)+9)*(t>>10&893)&t>>4^((t>>16&1?0:t>>10&-t>>14&3)|t>>9&1+t>>12&7?0:9001/(t%4096)-t/9&8?-1:0));
+	}
+
+	WAVEHDR header = { buffer, sizeof(buffer), 0, 0, 0, 0, 0, 0 };
+
+	waveOutPrepareHeader(wave, &header, sizeof(WAVEHDR));
+	waveOutWrite(wave, &header, sizeof(WAVEHDR));
+	waveOutUnprepareHeader(wave, &header, sizeof(WAVEHDR));
+	waveOutClose(wave);
+}
+
 
 void WINAPI Bytebeat3() {
 	WAVEFORMATEX wavef = { WAVE_FORMAT_PCM, 1, 8000, 0, WAVE_FORMAT_PCM, 8, 0 };
@@ -123,6 +162,48 @@ void WINAPI Bytebeat5() {
 	waveOutClose(wave);
 }
 
+void WINAPI BytebeatPato4() {
+	WAVEFORMATEX wavef = { WAVE_FORMAT_PCM, 1, 8000, 0, WAVE_FORMAT_PCM, 8, 0 };
+
+	waveOutOpen(&wave, 0, &wavef, 0, 0, 0);
+	char buffer[8000 * 60];
+
+	for (DWORD t = 0; t < sizeof(buffer); t++) {
+		buffer[t] = (t*(-t>>(t>>13)%8+2&(t>>12)%256)/4+(1048576/(t%65536)&128));
+	}
+
+	WAVEHDR header = { buffer, sizeof(buffer), 0, 0, 0, 0, 0, 0 };
+
+	waveOutPrepareHeader(wave, &header, sizeof(WAVEHDR));
+	waveOutWrite(wave, &header, sizeof(WAVEHDR));
+	waveOutUnprepareHeader(wave, &header, sizeof(WAVEHDR));
+	waveOutClose(wave);
+}
+
+void WINAPI BytebeatPato5() {
+	WAVEFORMATEX wavef = { WAVE_FORMAT_PCM, 1, 8000, 0, WAVE_FORMAT_PCM, 8, 0 };
+
+	waveOutOpen(&wave, 0, &wavef, 0, 0, 0);
+	char buffer[8000 * 60];
+
+	for (DWORD t = 0; t < sizeof(buffer); t++) {
+		buffer[t] = ((((t*(t&16384?7:5)*(3-(3&t>>9)+(3&t>>(-t>>20&1?8:11)))>>(3&-t>>(t&(-t&57344?4096:6144)?2:16))|(-t&24576?(3*t>>5)%192:(t>>4)%192)|(t>>20&1?t>>4:t>>(-t>>18&1)+2))&255)>>1)-(t>>18&1?((-t>>1)*(t&16384?7:5)>>(-t>>10&3)&t>>4&255)>>1:(-t>>2)*(t&16384?7:5)>>(-t>>10&3)&(t>>4&255)>>1)+(128&(int)(4E4/(1+(t&(-t&28672?4095:2047)))))+(t>>18&3&&-(t*(t^t%9)&255&-(t>>(t>>11&31?(-t&14336?5:4)-!(-t&28672)-!(-t&122880):6))<<2&255)>>2)+128);
+	}
+
+	WAVEHDR header = { buffer, sizeof(buffer), 0, 0, 0, 0, 0, 0 };
+
+	waveOutPrepareHeader(wave, &header, sizeof(WAVEHDR));
+	waveOutWrite(wave, &header, sizeof(WAVEHDR));
+	waveOutUnprepareHeader(wave, &header, sizeof(WAVEHDR));
+	waveOutClose(wave);
+}
+
+//////////////////////////////////////////////////////////////////////////////
+
+DWORD WINAPI FakeError(LPVOID lpstart) {
+		MessageBoxA(0, "IndexError: list assignment index out of range", "PyMal error!",  MB_ABORTRETRYIGNORE | MB_ICONERROR);
+}
+
 DWORD WINAPI Dark(LPVOID lpstart) {
 	int x = GetSystemMetrics(SM_CXSCREEN);
 	int y = GetSystemMetrics(SM_CYSCREEN);
@@ -132,7 +213,14 @@ DWORD WINAPI Dark(LPVOID lpstart) {
 	while (true) {
 		for (int ys = 0; ys < y; ys += 6) {
 			StretchBlt(hdc, 0, 0, x, ys, hdc, 0, 0, 1, 1, SRCAND);
-			//Sleep(1);
+
+			/*if (rand() % 5 == 0) { DrawIcon(hdc, x, y, LoadIcon(0, IDI_ERROR)); Sleep(0.99); }
+			if (rand() % 5 == 0) { DrawIcon(hdc, x, y, LoadIcon(0, IDI_WARNING)); Sleep(0.99); }
+			if (rand() % 5 == 0) { DrawIcon(hdc, x, y, LoadIcon(0, IDI_INFORMATION)); Sleep(0.99); }
+			if (rand() % 5 == 0) { DrawIcon(hdc, x, y, LoadIcon(0, IDI_INFORMATION)); Sleep(0.99); }
+			if (rand() % 5 == 0) { DrawIcon(hdc, x, y, LoadIcon(0, IDI_ASTERISK)); Sleep(0.99); }
+			*/
+		//Sleep(1);
 		}
 	}
 }
@@ -280,10 +368,10 @@ DWORD WINAPI RGBCircle(LPVOID lpstart) {
 
 		for (int runtime = 0; runtime < 100; runtime++) {
 			//if (sel == 1 || sel == 2 || sel == 3 || sel == 4) {
-				Ellipse(hdc, xs + random() * xs, ys + random() * 6, xs + random() * 6, ys + random() * 6);
+				Ellipse(hdc, xs + 7, ys + 7, xs + 7, ys + 7);
 				xs += 10 * sin(xs); // omg math :0
 				ys += 10 * cos(ys);
-				//Sleep(130);
+				Sleep(10);
 			//}
 		}
 		color++;
@@ -417,30 +505,30 @@ DWORD WINAPI Melter(LPVOID lpstart) {
 		int ys = random() % y;
 		int sel = random() % 4 + 1;
 		int size = random() % 300 + 200;
-		int rnd = random() % 50 + 20;
+		int rnd = random() % 50 + 30;
 
 		if (sel == 1) {
 			for (int i = 0; i < rnd; i += 10) {
-				BitBlt(hdc, xs + i, ys + i, size, size, hdc, xs, ys, SRCCOPY);
-				Sleep(100);
+				BitBlt(hdc, xs + i, ys + i, size + xs, size + ys, hdc, xs, ys, SRCCOPY);
+				Sleep(10);
 			}
 		}
 		else if (sel == 2) {
 			for (int i = 0; i < rnd; i += 10) {
-				BitBlt(hdc, xs + i, ys - i, size, size, hdc, xs, ys, SRCCOPY);
-				Sleep(100);
+				BitBlt(hdc, xs + i, ys - i, size + xs, size + ys, hdc, xs, ys, SRCCOPY);
+				Sleep(10);
 			}
 		}
 		else if (sel == 3) {
 			for (int i = 0; i < rnd; i += 10) {
-				BitBlt(hdc, xs - i, ys + i, size, size, hdc, xs, ys, SRCCOPY);
-				Sleep(100);
+				BitBlt(hdc, xs - i, ys + i, size + xs, size + ys, hdc, xs, ys, SRCCOPY);
+				Sleep(10);
 			}
 		}
 		else if (sel == 4) {
 			for (int i = 0; i < rnd; i += 10) {
-				BitBlt(hdc, xs - i, ys - i, size, size, hdc, xs, ys, SRCCOPY);
-				Sleep(100);
+				BitBlt(hdc, xs - i, ys - i, size + xs, size + ys, hdc, xs, ys, SRCCOPY);
+				Sleep(10);
 			}
 		}
 	}
@@ -713,23 +801,26 @@ void startPayloads() {
 	HANDLE thread;
 	DWORD ID;
 
+    Sleep(random() % 3000 + 2400);
+	thread = CreateThread(0, 0, FakeError, 0, 0, &ID);
+	
 	Sleep(random() % 5000 + 3400);
 	HANDLE dark = CreateThread(0, 0, Dark, 0, 0, &ID);
-
-	Sleep(random() % 4800 + 3900);
+	
+	Sleep(random() % 4000 + 3000);
 	thread = CreateThread(0, 0, Cursors, 0, 0, &ID);
-	Bytebeat1();
+	thread = CreateThread(0, 0, Melter, 0, 0, &ID);
+	
+	BytebeatPato1();
 
 	Sleep(random() % 15000 + 11000);
-
-	Sleep(random() % 12000 + 10000);
 
 	thread = CreateThread(0, 0, Melter, 0, 0, &ID);
 	thread = CreateThread(0, 0, Trails, 0, 0, &ID);
 	thread = CreateThread(0, 0, RGBCircle, 0, 0, &ID);
 	thread = CreateThread(0, 0, IconWave, 0, 0, &ID);
 	Reset();
-	BytebeatPato1(); // UwU
+	BytebeatPato2(); // UwU
 	TerminateThread(dark, 0);
 	CloseHandle(dark);
 
@@ -739,11 +830,11 @@ void startPayloads() {
 	Sleep(random() % 10000 + 9000);
 	thread = CreateThread(0, 0, Shake, 0, 0, &ID);
 
-	Sleep(random() % 8000 + 7000);
+	Sleep(random() % 80000 + 7000);
 	thread = CreateThread(0, 0, Rotate, 0, 0, &ID);
 	thread = CreateThread(0, 0, Melter2, 0, 0, &ID);
 	Reset();
-	Bytebeat3();
+	BytebeatPato3();
 
 	Sleep(random() % 10000 + 9000);
 	thread = CreateThread(0, 0, Dark2, 0, 0, &ID);
@@ -762,13 +853,13 @@ void startPayloads() {
 	thread = CreateThread(0, 0, Colors, 0, 0, &ID);
 	thread = CreateThread(0, 0, CircleSquare, 0, 0, &ID);
 	Reset();
-	Bytebeat4();
+	BytebeatPato4();
 
-	Sleep(random() % 20000 + 18000);
+	Sleep(random() % 20000 + 1800);
 	thread = CreateThread(0, 0, Bright, 0, 0, &ID);
 	thread = CreateThread(0, 0, ExtremeRotation, 0, 0, &ID);
 	Reset();
-	Bytebeat5();
+	BytebeatPato5();
 
 	Sleep(random() % 17000 + 16000);
 	thread = CreateThread(0, 0, Invert, 0, 0, &ID);
@@ -777,6 +868,5 @@ void startPayloads() {
 
 	Sleep(random() % 4000 + 3000);
 
-	startPayloads(); // double
-	startPayloads(); // and give it to the next unlucky
+	//startPayloads();
 }

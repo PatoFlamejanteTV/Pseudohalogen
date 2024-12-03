@@ -1,42 +1,40 @@
-#################################
-#  _    _       _               #
-# | |  | |     | |              #
-# | |__| | ___ | |_______ _ __  #
-# |  __  |/ _ \| |_  / _ \ '__| #
-# | |  | | (_) | |/ /  __/ |    #
-# |_|  |_|\___/|_/___\___|_|    #
-#                               # (safety version)
-#################################
+______                   _       _   _       _                        
+| ___ \                 | |     | | | |     | |                       
+| |_/ /__  ___ _   _  __| | ___ | |_| | __ _| | ___   __ _  ___ _ __  
+|  __/ __|/ _ \ | | |/ _` |/ _ \|  _  |/ _` | |/ _ \ / _` |/ _ \ '_ \ 
+| |  \__ \  __/ |_| | (_| | (_) | | | | (_| | | (_) | (_| |  __/ | | |
+\_|  |___/\___|\__,_|\__,_|\___/\_| |_/\__,_|_|\___/ \__, |\___|_| |_|
+                                                      __/ |           
+                                                     |___/            
 
 If you don't know what is the Pseudohalogen.exe file do, then
-do not run, and delete the file. This program is a malware.
-This will destroy your system.
+do not run, and delete the file. This program is not a malware.
+And this will not destroy your system
 
 WARNING:
 If you have something that hurts your eyes
 such as epilepsy, then DO NOT RUN THIS MALWARE!
 
-Creator: Dominik111 (safety version by pankoza)
+Creator(s): 
+
+[Holzer] Dominik111 
+[Holzer-safety] Pankoza
+[Pseudohalogen] UltimateQuack
+
 Version: 1.2
 Written in: C++
-MBR code: SleepMod
 
 This little trojan will create some GDI effects, open programs,
-random cursor clicks, keyboard input, moving the program window,
-renaming the window titles, some ByteBeat and at the end, it calls
-2 undocumented features: RtlAdjustPrivileges, NtRaiseHardError. (safety version only has GDI and ByteBeat)
-It also uses the Xorshift32 function. And as always, a little
-classic MBR. I have zero knowledge in assembly so the MBR message
-code is from: SleepMod
+some ByteBeat and at the end.
 
-Before the destruction begins, there's 2 warning, so
+Before the (disabled) destruction begins, there's 2 warnings, so
 nothing will happen when running by an accident.
 User Account Control will also appear in Windows Vista and newer.
 Without admin privileges, it won't be able to overwrite the MBR. So
 be sure to run as admin (it will run as admin by default)! On Windows XP
 you can just run it, it will can overwrite in anyway.
 
-Only try this in a Virtual Machine.
+Only try this in a Virtual Machine. (actually you can use your normal PC too)
 
 There's a bug that it will stop because the ByteBeat code
 is coded wrongly, I am trying to fix that as soon as possible

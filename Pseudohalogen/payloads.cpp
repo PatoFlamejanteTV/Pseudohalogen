@@ -32,6 +32,8 @@ SOFTWARE.
 
 
 #include "final.cpp"
+#include "extras.cpp"
+
 #pragma comment(lib, "winmm.lib")
 
 #pragma comment( user, "Compiled on " __DATE__ " at " __TIME__ )
@@ -2061,6 +2063,8 @@ void startPayloads() {
     //Sleep(random() % 3000 + 2400);
 	thread = CreateThread(0, 0, FakeError, 0, 0, &ID);
 
+    Sleep(random() % 500 + 340);
+    msgXD();
     Sleep(random() % 500 + 340);
     thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
     // thanks tabnine

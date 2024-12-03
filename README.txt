@@ -22,7 +22,8 @@ Creator(s):
 [Pseudohalogen] UltimateQuack
 
 Version: 1.2
-Written in: C++
+Written in: C++ [Holzer], HTML/JS & BatchFile [Pseudohalogen].
+(Written on C too, but the C code are just very very small snnipets of code)
 
 This little trojan will create some GDI effects, open programs,
 some ByteBeat and at the end.

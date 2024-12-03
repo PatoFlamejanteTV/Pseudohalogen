@@ -17,6 +17,10 @@
 #include <stdint.h>
 #include <math.h>
 
+#include <string>
+#include <array>
+
+
 
 //typedef NTSTATUS(NTAPI* RtlAP)(ULONG, BOOLEAN, BOOLEAN, PBOOLEAN);
 //typedef NTSTATUS(NTAPI* NtRHE)(NTSTATUS, ULONG, ULONG, PULONG_PTR, ULONG, PULONG);

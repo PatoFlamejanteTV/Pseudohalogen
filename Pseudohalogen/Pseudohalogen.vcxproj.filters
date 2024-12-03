@@ -34,9 +34,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\OneDrive\Asztali gép\Képek\icon.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="icon.ico">
       <Filter>Resource Files</Filter>
     </Image>

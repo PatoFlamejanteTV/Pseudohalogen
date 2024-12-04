@@ -1,0 +1,50 @@
+______                   _       _   _       _                        
+| ___ \                 | |     | | | |     | |                       
+| |_/ /__  ___ _   _  __| | ___ | |_| | __ _| | ___   __ _  ___ _ __  
+|  __/ __|/ _ \ | | |/ _` |/ _ \|  _  |/ _` | |/ _ \ / _` |/ _ \ '_ \ 
+| |  \__ \  __/ |_| | (_| | (_) | | | | (_| | | (_) | (_| |  __/ | | |
+\_|  |___/\___|\__,_|\__,_|\___/\_| |_/\__,_|_|\___/ \__, |\___|_| |_|
+                                                      __/ |           
+                                                     |___/            
+
+If you don't know what is the Pseudohalogen.exe file do, then
+do not run, and delete the file. This program is not a malware.
+And this will not destroy your system
+
+WARNING:
+If you have something that hurts your eyes
+such as epilepsy, then DO NOT RUN THIS MALWARE!
+
+Creator(s): 
+
+[Holzer] Dominik111 
+[Holzer-safety] Pankoza
+[Pseudohalogen] UltimateQuack
+
+Version: 1.2
+Written in: C++ [Holzer], HTML/JS & BatchFile [Pseudohalogen].
+(Written on C too, but the C code are just very very small snnipets of code)
+
+=============================================================================
+
+  ____        _ _     _ _             
+ |  _ \      (_) |   | (_)            
+ | |_) |_   _ _| | __| |_ _ __   __ _ 
+ |  _ <| | | | | |/ _` | | '_ \ / _` |
+ | |_) | |_| | | | (_| | | | | | (_| |
+ |____/ \__,_|_|_|\__,_|_|_| |_|\__, |
+                                 __/ |
+                                |___/ 
+
+For building this, you gonna need:
+
+Visual Studio (NOT "CODE"), i recommend the most recent one
+Some SDKs i think (don't worry, i'm not sure bout that)
+
+Step-by-step:
+
+Double-click "Pseudohalogen-safety.sln" > Its an file that informs VS how to compile,
+Click "Build"
+And click select "Pseudohalogen-safety"
+
+Now search for "x64" or anything else and test :D

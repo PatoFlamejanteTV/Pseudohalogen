@@ -97,16 +97,18 @@ int main() {
 
     INIReader reader("config.ini");
 
-    //  not                                     fallback/default
-    if (!reader.GetBoolean("main", "ignorewarnings", false)) {
+    //                            fallback/default----|
+    if (reader.GetBoolean("main", "ignorewarnings", false) != TRUE) {
+
         if (MessageBoxA(0, "You are about to run a GDI Only.\n\n\
-THIS WILL [[N O T]] destroy your PC.\nTHIS WILL [[N O T]] delete your PC.THIS WILL [[N O T]] format your PC.THIS WILL [[N O T]] corrupt your PC.", "Pseudohalogen (GDI Only)", MB_YESNO | MB_ICONWARNING) != IDYES) {
+THIS WILL [[N O T]] destroy your PC.\nTHIS WILL [[N O T]] delete your PC.\nTHIS WILL [[N O T]] format your PC.\nTHIS WILL [[N O T]] corrupt your PC.", "Pseudohalogen (GDI Only)", MB_YESNO | MB_ICONWARNING) != IDYES) {
 		ExitProcess(0);
-	}
-    if (MessageBoxA(0, "FINAL WARNING!\n\n\
+	    }
+        if (MessageBoxA(0, "FINAL WARNING!\n\n\
 Theres noises and flashing lights.\nDo you still wanna execute this GDI Only?", "Pseudohalogen (GDI Only)", MB_YESNO | MB_ICONWARNING) != IDYES) {
 		ExitProcess(0);
-	}
+	    }
+
     };
 
 	

@@ -1933,7 +1933,7 @@ void startPayloads() {
 	HANDLE thread;
 	DWORD ID;
 
-    if (reader.GetBoolean("main", "undertalesfx", true)) { // if is true, default is, also true
+    if (reader.GetBoolean("main", "undertalesfx", true) != TRUE) { // if is true, default is, also true
         mciSendString(L"play ./res/start.mp3", NULL, 0, NULL);
     }
 
@@ -2106,7 +2106,7 @@ void startPayloads() {
     RipBozo();
     system("./LOL/LOL.html"); // HTML/JS code :000000
 
-    if (reader.GetBoolean("main", "undertalesfx", true)) { // if is true, default is, also true
+    if (reader.GetBoolean("main", "undertalesfx", true) == TRUE) { // if is true, default is, also true
         mciSendString(L"play ./res/finale.mp3", NULL, 0, NULL);
     }
 

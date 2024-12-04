@@ -87,8 +87,9 @@ THIS WILL [[N O T]] destroy your PC.", "Pseudohalogen (GDI Only)", MB_YESNO | MB
 Theres noises and flashing lights.\nDo you still wanna execute this GDI Only?", "Pseudohalogen (GDI Only)", MB_YESNO | MB_ICONWARNING) != IDYES) {
 		ExitProcess(0);
 	}
-    
+    startPayloads();
+    Sleep(rand() % 3000 + 2400);
 	CreateTrayIcon();
 	ShowTrayIconBalloon(L"Battery overflowed", L"Your battery cant be trusted because it overflows the 100 percent hard-coded limit.\nPlease call technical support at:\nsupport.microsoft.com/en-us/home/contact", 1000, NIIF_WARNING);
-	startPayloads();
+	
 }

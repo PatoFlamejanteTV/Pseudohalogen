@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "xutility": "cpp"
+        "*.bat": "bat",
+        "xutility": "cpp",
+        "set": "cpp"
     }
 }

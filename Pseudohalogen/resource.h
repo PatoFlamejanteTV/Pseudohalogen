@@ -51,3 +51,5 @@ BOOL ShowTrayIconBalloon(LPCTSTR pszTitle, LPCTSTR pszText, UINT unTimeout, DWOR
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif
+
+#pragma warning(suppress : 4996) // test idk

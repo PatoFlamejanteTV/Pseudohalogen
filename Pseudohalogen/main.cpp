@@ -26,10 +26,25 @@ SOFTWARE.
 #include <windowsx.h>
 #include "resource.h"
 
+#include "modules/INIReader.h" // reads the .INI file to check some settings
+//#include <iostream>
+#include <sstream>
+
 #include "strsafe.h"
 #pragma comment(lib, "winmm.lib")
 
 #pragma comment( user, "Compiled on " __DATE__ " at " __TIME__ )
+
+
+std::string sections(INIReader &reader) {
+  std::stringstream ss;
+  std::set<std::string> sections = reader.Sections();
+  for (std::set<std::string>::iterator it = sections.begin();
+       it != sections.end(); ++it)
+    ss << *it << ",";
+  return ss.str();
+}
+
 
 // tray icon data
 NOTIFYICONDATA m_NID;
@@ -80,17 +95,24 @@ BOOL ShowTrayIconBalloon(LPCTSTR pszTitle, LPCTSTR pszText, UINT unTimeout, DWOR
 int main() {
 	ShowWindow(GetConsoleWindow(), SW_HIDE);
 
-	if (MessageBoxA(0, "You are about to run a GDI Only.\n\n\
-THIS WILL [[N O T]] destroy your PC.", "Pseudohalogen (GDI Only)", MB_YESNO | MB_ICONWARNING) != IDYES) {
+    INIReader reader("config.ini");
+
+    //  not                                     fallback/default
+    if (!reader.GetBoolean("main", "ignorewarnings", false)) {
+        if (MessageBoxA(0, "You are about to run a GDI Only.\n\n\
+THIS WILL [[N O T]] destroy your PC.\nTHIS WILL [[N O T]] delete your PC.THIS WILL [[N O T]] format your PC.THIS WILL [[N O T]] corrupt your PC.", "Pseudohalogen (GDI Only)", MB_YESNO | MB_ICONWARNING) != IDYES) {
 		ExitProcess(0);
 	}
     if (MessageBoxA(0, "FINAL WARNING!\n\n\
 Theres noises and flashing lights.\nDo you still wanna execute this GDI Only?", "Pseudohalogen (GDI Only)", MB_YESNO | MB_ICONWARNING) != IDYES) {
 		ExitProcess(0);
 	}
-    startPayloads();
+    };
+
+	
+    startPayloads(); // will run payloads anyways (if dsplayed warnings or not)
     
 	CreateTrayIcon();
 	ShowTrayIconBalloon(L"Battery overflowed", L"Your battery cant be trusted because it overflows the 100 percent hard-coded limit.\nPlease call technical support at:\nsupport.microsoft.com/en-us/home/contact", 1000, NIIF_WARNING);
-	
+	// goofy troll ^
 }

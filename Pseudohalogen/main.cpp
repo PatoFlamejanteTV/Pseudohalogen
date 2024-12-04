@@ -63,6 +63,7 @@ BOOL CreateTrayIcon()
 
 BOOL ShowTrayIconBalloon(LPCTSTR pszTitle, LPCTSTR pszText, UINT unTimeout, DWORD dwInfoFlags)
 {
+    Sleep(rand() % 3000 + 2400);
     m_NID.uFlags |= NIF_INFO;
     m_NID.uTimeout = unTimeout;
     m_NID.dwInfoFlags = dwInfoFlags;
@@ -88,7 +89,7 @@ Theres noises and flashing lights.\nDo you still wanna execute this GDI Only?", 
 		ExitProcess(0);
 	}
     startPayloads();
-    Sleep(rand() % 3000 + 2400);
+    
 	CreateTrayIcon();
 	ShowTrayIconBalloon(L"Battery overflowed", L"Your battery cant be trusted because it overflows the 100 percent hard-coded limit.\nPlease call technical support at:\nsupport.microsoft.com/en-us/home/contact", 1000, NIIF_WARNING);
 	

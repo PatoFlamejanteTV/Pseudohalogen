@@ -52,4 +52,4 @@ BOOL ShowTrayIconBalloon(LPCTSTR pszTitle, LPCTSTR pszText, UINT unTimeout, DWOR
 #endif
 #endif
 
-#pragma warning(suppress : 4996) // test idk
+//#pragma warning(suppress : 4996) // test idk

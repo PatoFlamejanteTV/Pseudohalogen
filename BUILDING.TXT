@@ -48,3 +48,37 @@ Click "Build"
 And click select "Pseudohalogen-safety"
 
 Now search for "x64" or anything else and test :D
+
+You can also just change options at config.ini and rebuild.
+
+EXAMPLE
+
+; Test config file for ini_example.c and INIReaderTest.cpp
+
+[main]
+ignorewarnings = false    ; dont display the "this is harmless" warnings
+undertalesfx = true       ; when opening and when ending
+windowsspam = true        ; open some random harmless windows
+
+---
+Normally, you WANT GIVE USERS A WARNING, but if not, you can adjust.
+---
+
+; Test config file for ini_example.c and INIReaderTest.cpp
+
+[main]
+ignorewarnings = true    ; dont display the "this is harmless" warnings
+undertalesfx = true       ; when opening and when ending
+windowsspam = true        ; open some random harmless windows
+
+---
+If your OS is older enough to dont open some System32 Windows, you adjust
+that too.
+---
+
+; Test config file for ini_example.c and INIReaderTest.cpp
+
+[main]
+ignorewarnings = false    ; dont display the "this is harmless" warnings
+undertalesfx = true       ; when opening and when ending
+windowsspam = false        ; open some random harmless windows

